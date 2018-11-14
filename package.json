@@ -14,9 +14,15 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.0.0",
+    "chalk": "^2.4.1",
     "cross-env": "^5.2.0",
     "element-ui": "^2.4.6",
     "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json": "^2.0.2",
+    "koa-router": "^7.4.0",
+    "koa-views": "^6.1.4",
+    "mongoose": "^5.3.12",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
