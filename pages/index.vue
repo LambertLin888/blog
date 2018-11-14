@@ -1,20 +1,29 @@
 <template>
   <section class="container">
     <div>
-      <el-row type="flex"
-      justify="center">
-        <el-col :span="14" class="detail_title">
-            <div>{{title}}</div>
-            <div class="time">发布时间：{{time}}&nbsp;&nbsp;&nbsp;&nbsp;分类：{{list === 'Front' ? '前端文章' : '后端文章'}}</div>
+      <el-row 
+        type="flex"
+        justify="center">
+        <el-col 
+          :span="14" 
+          class="detail_title">
+          <div>{{ title }}</div>
+          <div class="time">发布时间：{{ time }}&nbsp;&nbsp;&nbsp;&nbsp;分类：{{ list === 'Front' ? '前端文章' : '后端文章' }}</div>
         </el-col>
 
       </el-row>
-      <el-row type="flex" justify="center">
-        <el-col :span="14" class="detail_content">
-            <el-card>
-                <div v-show="!content">暂无文章数据...</div>
-                <div v-html="content" class="md markdown-body"></div>
-            </el-card>
+      <el-row 
+        type="flex" 
+        justify="center">
+        <el-col 
+          :span="14" 
+          class="detail_content">
+          <el-card>
+            <div v-show="!content">暂无文章数据...</div>
+            <div 
+              class="md markdown-body" 
+              v-html="content"/>
+          </el-card>
         </el-col>
       </el-row>
     </div>
