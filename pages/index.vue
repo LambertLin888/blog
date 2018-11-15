@@ -1,53 +1,52 @@
 <template>
-  <section class="container">
-    <div @click="getArticle">
-      <el-row
-        type="flex"
-        justify="center">
-        <el-col
-          :span="14"
-          class="detail_title">
-          <div>{{ title }}</div>
+  <div @click="getArticle">
+    <Navbar :active="active"/>
+    <el-row
+      type="flex"
+      justify="center">
+      <el-col
+        :span="14"
+        class="detail_title">
+        <div>{{ title }}</div>
+        <div
+          class="time"
+          @click="getArticle">发布时间：{{ time }}&nbsp;&nbsp;&nbsp;&nbsp;分类：{{ list === 'Front' ? '前端文章' : '后端文章' }}</div>
+      </el-col>
+    </el-row>
+    <el-row
+      type="flex"
+      justify="center">
+      <el-col
+        :span="14"
+        class="detail_content">
+        <el-card>
+          <div v-show="!content">暂无文章数据...</div>
           <div
-            class="time"
-            @click="getArticle">发布时间：{{ time }}&nbsp;&nbsp;&nbsp;&nbsp;分类：{{ list === 'Front' ? '前端文章' : '后端文章' }}</div>
-        </el-col>
-
-      </el-row>
-      <el-row
-        type="flex"
-        justify="center">
-        <el-col
-          :span="14"
-          class="detail_content">
-          <el-card>
-            <div v-show="!content">暂无文章数据...</div>
-            <div
-              class="md markdown-body">
-              {{ name }}</div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
-    <logo-com/>
-  </section>
+            class="md markdown-body">
+            {{ name }}</div>
+        </el-card>
+      </el-col>
+    </el-row>
+    <Footer/>
+  </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Navbar from '~/components/Navbar.vue'
+import Footer from '~/components/Footer.vue'
 import { baseurl } from '~/plugins/url.js'
-
 export default {
   components: {
-    logoCom: Logo
+    Navbar,
+    Footer
   },
   data() {
     return {
-      name: 'lambert num 1'
+      name: 'lambert num 1',
+      active: 'index'
     }
   },
   async asyncData({ app, params }) {
-    debugger
     let json = { id: '5bebf7f7fc438e95d1fb42a9' }
     let result = await app.$axios.get(`${baseurl}/api/article/getArticleInfo`, {
       params: json
@@ -61,13 +60,31 @@ export default {
     getArticle() {
       console.log('dianji')
     }
+  },
+  head() {
+    return {
+      title: 'linbenjian的个人博客,基于nuxt构建',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: '林本剑的个人博客, 基于技术,分享日常积累的前端技术'
+        },
+        {
+          hid: 'keywords',
+          name: 'keywords',
+          content: '林本剑,linbenjian,前端,个人博客,nuxt,dev-tool'
+        },
+        { hid: 'author', content: 'linbenjian' }
+      ]
+    }
   }
 }
 </script>
 
 
 <style lang="less">
-@import url('../assets/css/index/detail.less');
+@import url('../assets/css/page/index.less');
 .container {
   min-height: 100vh;
   display: flex;
