@@ -16,10 +16,9 @@
             text-color="#fff"
             mode="horizontal"
             @select="handleSelect">
-            <el-menu-item index="index">
-            <span>前端文章</span></el-menu-item>
-            <el-menu-item index="Backarticle"><span>后端文章</span></el-menu-item>
-            <el-menu-item index="version"><span>更新日志</span></el-menu-item>
+            <el-menu-item index="index"><span>最新博文</span></el-menu-item>
+            <el-menu-item index="IT"><span>技术开发</span></el-menu-item>
+            <el-menu-item index="life"><span>生活点滴</span></el-menu-item>
             <el-menu-item index="about"><span>关于我</span></el-menu-item>
           </el-menu>
         </el-col>
@@ -38,16 +37,21 @@ export default {
   },
   data() {
     return {
-      activeIndex: 'index'
+      menuRouter: {
+        index: '/',
+        IT: '/article-list/IT',
+        life: '/article-list/life',
+        about: '/about'
+      }
     }
   },
   methods: {
     handleSelect(key) {
-      this.$router.push({ name: key })
+      this.$router.push({ path: this.menuRouter[key] })
     }
   }
 }
 </script>
 <style lang="less">
-@import '../assets/css/common/navbar.less';
+@import '../assets/css/components/navbar.less';
 </style>

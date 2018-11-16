@@ -31,50 +31,6 @@
           layout="prev, pager, next"
           @current-change="pagination"/>
       </el-col>
-      <!-- 右侧关于我 -->
-      <el-col
-        :span="5"
-        :offset="1">
-        <el-card class="about">
-          <div class="about-title">about Me</div>
-          <div class="about-name"/>
-          <div class="about-content">
-            <p>lambert-lin</p>
-            <p>Web前端工程师</p>
-            <p>benjianlin@foxmail.com</p>
-          </div>
-        </el-card>
-        <!-- 近期文章开始 -->
-        <el-card class="article">
-          <div class="article-title">近期文章</div>
-          <hr>
-          <nuxt-link
-            v-for="item in lately"
-            :key="item._id"
-            :to="{name:'article-detail-id',params:{id:item._id}}"
-            class="article-link">
-            <i class="el-icon-edit"/>&nbsp;&nbsp;{{ item.title }}
-          </nuxt-link>
-        </el-card>
-        <!-- 近期文章结束 -->
-
-        <!-- 友情链接开始 -->
-        <el-card class="link">
-          <div class="link-title">友情链接</div>
-          <hr>
-          <div class="link-content">
-            <a
-              href="/"
-              target="_blank"
-              class="link-url">虚位以待</a>
-            <a
-              href="/"
-              target="_blank"
-              class="link-url">虚位以待</a>
-          </div>
-        </el-card>
-        <!-- 友情链接结束 -->
-      </el-col>
     </el-row>
     <Footer/>
   </div>
@@ -94,8 +50,9 @@ export default {
       active: 'index'
     }
   },
-  async asyncData({ app }) {
-    let json = { page: 1, pagesize: 5 }
+  async asyncData({ app, params }) {
+    app.data.active = params.category
+    let json = { page: 1, pagesize: 5, category: params.category }
     let { data } = await getArticleList({ params: json })
     let { list, count } = data
     let lately = list.slice(0, 4)
@@ -133,5 +90,5 @@ export default {
 
 
 <style lang="less">
-@import url('../assets/css/pages/index.less');
+@import url('../../assets/css/pages/index.less');
 </style>

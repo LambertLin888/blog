@@ -53,7 +53,7 @@ let insertArticle = async ctx => {
  *@return {object} return article list 按时间排序
  */
 
-let getArticle = async (ctx, next) => {
+let getArticleList = async ctx => {
   try {
     let req = ctx.request.query
     let { parseInt } = Number
@@ -65,7 +65,7 @@ let getArticle = async (ctx, next) => {
       .skip(page)
       .limit(pagesize)
       .sort({ _id: -1 })
-    let count = await article.count({})
+    let count = await article.countDocuments({})
     ctx.body = {
       error: 0,
       count,
@@ -84,7 +84,7 @@ let getArticle = async (ctx, next) => {
  *@return {object|null} return Article Detail
  */
 
-let articleInfo = async (ctx, next) => {
+let getArticleDetail = async (ctx, next) => {
   try {
     let req = ctx.request.query
     let { id } = req
@@ -103,6 +103,6 @@ let articleInfo = async (ctx, next) => {
 
 module.exports = {
   insertArticle,
-  getArticle,
-  articleInfo
+  getArticleList,
+  getArticleDetail
 }

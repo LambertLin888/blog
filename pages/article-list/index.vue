@@ -37,10 +37,11 @@
         :offset="1">
         <el-card class="about">
           <div class="about-title">about Me</div>
-          <div class="about-name"/>
           <div class="about-content">
-            <p>lambert-lin</p>
+            <p>lambert</p>
+
             <p>Web前端工程师</p>
+
             <p>benjianlin@foxmail.com</p>
           </div>
         </el-card>
@@ -91,6 +92,7 @@ export default {
   },
   data() {
     return {
+      name: 'lambert num 1',
       active: 'index'
     }
   },
@@ -133,5 +135,5 @@ export default {
 
 
 <style lang="less">
-@import url('../assets/css/pages/index.less');
+@import url('../../assets/css/pages/index.less');
 </style>

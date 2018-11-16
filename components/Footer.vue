@@ -14,13 +14,14 @@
 </template>
 
 <style lang="less">
+@import url('../assets/css/common.less');
 .footer {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 8rem;
   height: 60px;
-  background: #23282d;
+  background: @globalBgColor;
   color: #999;
   text-align: center;
   line-height: 60px;

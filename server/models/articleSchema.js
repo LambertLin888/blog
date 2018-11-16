@@ -14,9 +14,7 @@ let articleSchema = new mongoose.Schema({
   content: String,
   original: String,
   des: String,
-  list: String,
-  banner: String,
-  imgFileName: String
+  type: String
 })
 
 let articleModel = db.model('Article', articleSchema)
