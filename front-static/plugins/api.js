@@ -1,7 +1,7 @@
 import axios from 'axios'
 let baseurl =
   process.env.NODE_ENV === 'production'
-    ? 'http://api.brianlee.cn'
+    ? 'http://api.linbenjian.work'
     : 'http://localhost:3000'
 
 const insectArticle = params => {

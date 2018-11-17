@@ -46,12 +46,12 @@ export default {
     Footer
   },
   data() {
+    const active = this.$route.params.category || 'index'
     return {
-      active: 'index'
+      active
     }
   },
   async asyncData({ app, params }) {
-    app.data.active = params.category
     let json = { page: 1, pagesize: 5, category: params.category }
     let { data } = await getArticleList({ params: json })
     let { list, count } = data
