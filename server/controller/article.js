@@ -6,7 +6,7 @@
  * @desc 文章接口
  */
 
-const article = require('../models/articleSchema')
+const article = require("../models/articleSchema");
 /**
  * private API
  * @method insert
@@ -16,35 +16,30 @@ const article = require('../models/articleSchema')
 
 let insertArticle = async ctx => {
   try {
-    let req = ctx.request.body
-    let { title, htmlContent, date, des, original, radio } = req
-    console.log(req)
-    const front = await article.update(
-      { title },
-      {
-        $set: {
-          title,
-          content: htmlContent,
-          time: date,
-          des,
-          original,
-          list: radio
-        }
-      },
-      { upsert: true }
-    )
-    let { ok } = front
-    ctx.body = {
-      error: 0,
-      success: ok
+    const params = ctx.request.body;
+    console.log("param:" + params);
+    const result = await article.updateOne({ title: params.title }, params, {
+      upsert: true
+    });
+    let { ok } = result;
+    if (ok == 1) {
+      ctx.body = {
+        status: 0,
+        message: "已发布"
+      };
+    } else {
+      ctx.body = {
+        status: 1,
+        message: "发布失败"
+      };
     }
   } catch (e) {
     ctx.body = {
-      error: 1,
-      info: e
-    }
+      status: 1,
+      message: e.message
+    };
   }
-}
+};
 
 /**
  *public API
@@ -55,29 +50,29 @@ let insertArticle = async ctx => {
 
 let getArticleList = async ctx => {
   try {
-    let req = ctx.request.query
-    let { parseInt } = Number
-    let page = parseInt((req.page - 1) * req.pagesize)
-    let pagesize = parseInt(req.pagesize)
-    console.log(page)
+    let req = ctx.request.query;
+    let { parseInt } = Number;
+    let page = parseInt((req.page - 1) * req.pagesize);
+    let pagesize = parseInt(req.pagesize);
+    console.log(page);
     let list = await article
       .find({}, { __v: 0, content: 0, original: 0, list: 0 })
       .skip(page)
       .limit(pagesize)
-      .sort({ _id: -1 })
-    let count = await article.countDocuments({})
+      .sort({ _id: -1 });
+    let count = await article.countDocuments({});
     ctx.body = {
       error: 0,
       count,
       list
-    }
+    };
   } catch (e) {
     ctx.body = {
       error: 1,
       info: e
-    }
+    };
   }
-}
+};
 /**
  *public API
  *@param {String} id find Article Detail
@@ -86,23 +81,23 @@ let getArticleList = async ctx => {
 
 let getArticleDetail = async (ctx, next) => {
   try {
-    let req = ctx.request.query
-    let { id } = req
-    let result = await article.find({ _id: id })
+    let req = ctx.request.query;
+    let { id } = req;
+    let result = await article.find({ _id: id });
     ctx.body = {
       error: 0,
       info: result
-    }
+    };
   } catch (e) {
     ctx.body = {
       error: 1,
       error: e
-    }
+    };
   }
-}
+};
 
 module.exports = {
   insertArticle,
   getArticleList,
   getArticleDetail
-}
+};
