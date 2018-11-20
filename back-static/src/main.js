@@ -2,14 +2,53 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { Button, Select } from 'element-ui'
-import mavonEditor from 'mavon-editor'
+import Element from 'element-ui/lib/element-ui.common'
+import locale from 'element-ui/lib/locale/lang/en'
+import 'mavon-editor/dist/css/index.css'
+import {
+  Button,
+  Select,
+  Card,
+  Col,
+  Radio,
+  RadioGroup,
+  DatePicker,
+  Row,
+  Input,
+  Icon,
+  Menu,
+  Pagination,
+  Message,
+  Cascader,
+  Form,
+  FormItem,
+  Switch,
+  Table,
+  TableColumn
+} from 'element-ui'
 import './registerServiceWorker'
 
 Vue.config.productionTip = false
+Vue.use(Element, { locale })
 Vue.use(Button)
 Vue.use(Select)
-Vue.use(mavonEditor)
+Vue.use(Card)
+Vue.use(Col)
+Vue.use(Radio)
+Vue.use(RadioGroup)
+Vue.use(DatePicker)
+Vue.use(Row)
+Vue.use(Input)
+Vue.use(Icon)
+Vue.use(Menu)
+Vue.use(Pagination)
+Vue.use(Message)
+Vue.use(Cascader)
+Vue.use(Form)
+Vue.use(FormItem)
+Vue.use(Switch)
+Vue.use(Table)
+Vue.use(TableColumn)
 new Vue({
   router,
   store,

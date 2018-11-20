@@ -1,0 +1,134 @@
+[
+  {
+    "value": "IT",
+    "label": "技术",
+    "children": [
+      {
+        "value": "web",
+        "label": "前端",
+        "children": [
+          {
+            "value": "js",
+            "label": "Js"
+          },
+          {
+            "value": "CSS",
+            "label": "CSS"
+          },
+          {
+            "value": "html",
+            "label": "html"
+          }
+        ]
+      },
+      {
+        "value": "java",
+        "label": "前端",
+        "children": [
+          {
+            "value": "js",
+            "label": "Js"
+          },
+          {
+            "value": "CSS",
+            "label": "CSS"
+          },
+          {
+            "value": "html",
+            "label": "html"
+          }
+        ]
+      },
+      {
+        "value": "yunwei",
+        "label": "运维",
+        "children": [
+          {
+            "value": "docker",
+            "label": "Docker"
+          },
+          {
+            "value": "linux",
+            "label": "linux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "life",
+    "label": "生活",
+    "children": [
+      {
+        "value": "baby",
+        "label": "亲子",
+        "children": [
+          {
+            "value": "reading",
+            "label": "阅读"
+          },
+          {
+            "value": "music",
+            "label": "音乐"
+          },
+          {
+            "value": "shopping",
+            "label": "购物"
+          }
+        ]
+      },
+      {
+        "value": "work",
+        "label": "能力提升",
+        "children": [
+          {
+            "value": "training",
+            "label": "培训"
+          },
+          {
+            "value": "zhaoping",
+            "label": "招聘"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "essay",
+    "label": "杂文",
+    "children": [
+      {
+        "value": "suixiang",
+        "label": "随想",
+        "children": [
+          {
+            "value": "renwen",
+            "label": "人文"
+          },
+          {
+            "value": "shishi",
+            "label": "实事"
+          }
+        ]
+      },
+      {
+        "value": "reading",
+        "label": "阅读",
+        "children": [
+          {
+            "value": "after-reading",
+            "label": "读后感"
+          },
+          {
+            "value": "zhaichao",
+            "label": "摘抄"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "value": "other",
+    "label": "其他"
+  }
+]

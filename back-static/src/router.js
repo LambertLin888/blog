@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import ArticleList from './views/article-list.vue'
 
 Vue.use(Router)
 
@@ -10,8 +10,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'article-list',
+      component: ArticleList
     },
     {
       path: '/about',
@@ -20,7 +20,19 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/About.vue')
+        import(/* webpackChunkName: "about" */ './views/about.vue')
+    },
+    {
+      path: '/editor/:id',
+      name: 'editor',
+      component: () =>
+        import(/* webpackChunkName: "editor" */ './views/editor.vue')
+    },
+    {
+      path: '/detail/:id',
+      name: 'detail',
+      component: () =>
+        import(/* webpackChunkName: "detail" */ './views/detail.vue')
     }
   ]
 })

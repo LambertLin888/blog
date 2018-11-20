@@ -1,0 +1,39 @@
+/*博客内容*/
+@import '../common.less';
+.Animation(@second) {
+  transition: all ease @second;
+}
+.g-article-list {
+  margin-top: 1.5rem;
+  .item-box {
+    .card {
+      margin-bottom: 1rem;
+    }
+    .title {
+      color: #333;
+      font-size: 19px;
+      margin-bottom: 0.5rem;
+      margin: 0px;
+    }
+    .time {
+      font-size: 12px;
+      padding: 0.3rem 0 0.8rem 0;
+
+      span {
+        color: #999;
+        padding-right: 0.5rem;
+      }
+    }
+    .des {
+      color: #333;
+      font-size: 14px;
+      line-height: 23px;
+    }
+  }
+
+  /*分页*/
+  .pagination {
+    text-align: center;
+    margin-top: 1rem;
+  }
+}
