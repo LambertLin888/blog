@@ -1,3 +1,9 @@
+/**
+ * @author linbenjian
+ * @email benjianlin@foxmail.com
+ * @modify date 2018-11-20 11:14:41
+ * @desc 前端静态页面入口
+*/
 <template>
   <div>
     <Navbar :active="active"/>

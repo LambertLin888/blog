@@ -4,8 +4,8 @@ let baseurl =
     ? 'http://api.linbenjian.work'
     : 'http://localhost:3000'
 
-const insectArticle = params => {
-  return axios.post(`${baseurl}/api/article/insectArticle`, params)
+const insertArticle = params => {
+  return axios.post(`${baseurl}/api/article/insertArticle`, params)
 }
 
 const getArticleList = params => {
@@ -16,4 +16,4 @@ const getArticleDetail = params => {
   return axios.get(`${baseurl}/api/article/getArticleList`, params)
 }
 
-export { insectArticle, getArticleList, getArticleDetail }
+export { insertArticle, getArticleList, getArticleDetail }
