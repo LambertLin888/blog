@@ -59,7 +59,7 @@
 
 <script>
 import { mavonEditor } from 'mavon-editor'
-import { insertArticle } from '@/api.js'
+import { insertArticle, getArticleDetail } from '@/api.js'
 import { clone } from '@/assets/js/util.js'
 import categeryList from '@/constant/category-list.json'
 export default {
@@ -69,16 +69,19 @@ export default {
   data() {
     return {
       categeryList,
+      id: '',
       detail: {
         title: '',
         content: '',
         originalContent: '',
-        createTime: FormatDate(new Date()),
         des: '',
         publish: '1',
         categery: []
       }
     }
+  },
+  mounted() {
+    this.getArticle()
   },
   methods: {
     changeContent(value, render) {
@@ -103,6 +106,9 @@ export default {
       }
       let params = clone(this.detail)
       params.categery = params.categery.toString()
+      if (this.id != '') {
+        params.createTime = new Date().valueOf()
+      }
       insertArticle(params).then(res => {
         let { status } = res.data
         if (Object.is(status, 0)) {
@@ -114,13 +120,22 @@ export default {
           this.$message.error('发布失败')
         }
       })
+    },
+    getArticle() {
+      if (!this.$route.params.id) {
+        return
+      }
+      const id = this.$route.params.id
+      this.id = id
+      getArticleDetail({
+        params: { id }
+      }).then(result => {
+        let params = result.data.info[0]
+        params.categery = params.categery.split(',')
+        this.detail = params
+      })
     }
   }
-}
-/*封装格式化日期*/
-function FormatDate(strTime) {
-  var date = new Date(strTime)
-  return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`
 }
 </script>
 <style lang="less" scoped>
