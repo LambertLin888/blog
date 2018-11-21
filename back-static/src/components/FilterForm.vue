@@ -15,7 +15,7 @@
       <el-form-item label="类别:" prop="category">
         <el-cascader
           placeholder="请选择文章类别"
-          :options="categoryList"
+          :options="getCacategoryList"
           v-model="ruleForm.category"
           :change-on-select="true"
         ></el-cascader>
@@ -28,20 +28,21 @@
           range-separator="至"
           start-placeholder="开始日期"
           end-placeholder="结束日期"
+          :default-time="['00:00:00', '23:59:59']"
         >
         </el-date-picker>
       </el-form-item>
       <el-form-item label="公开:" prop="publish">
         <el-radio-group v-model="ruleForm.publish">
-          <el-radio :label="0">全部</el-radio>
+          <el-radio :label="-1">全部</el-radio>
           <el-radio :label="1">公开</el-radio>
-          <el-radio :label="2">不公开</el-radio>
+          <el-radio :label="0">不公开</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="排序:" prop="sort">
         <el-radio-group v-model="ruleForm.sort">
-          <el-radio :label="0">正序</el-radio>
-          <el-radio :label="1">倒序</el-radio>
+          <el-radio :label="1">正序</el-radio>
+          <el-radio :label="0">倒序</el-radio>
         </el-radio-group>
       </el-form-item>
 
@@ -60,26 +61,31 @@ import { clone } from '@/assets/js/utils.js'
 export default {
   data() {
     return {
-      categoryList,
       ruleForm: {
         title: '',
-        category: [],
+        category: ['all'],
         time: [],
-        publish: 0,
-        sort: 0
+        publish: -1,
+        sort: 1
       }
+    }
+  },
+  computed: {
+    getCacategoryList() {
+      categoryList.unshift({ value: 'all', label: '全部' })
+      return categoryList
     }
   },
   methods: {
     submitForm() {
-      let rules = clone(this.ruleForm)
-      let params = {}
-      params.title = rules.title
-      params.category = rules.category.join('/')
-      params.start_time = rules.time[0] ? rules.time[0].valueOf() : ''
-      params.end_time = rules.time[0] ? rules.time[1].valueOf() : ''
-      params.publish = rules.publish
-      params.sort = rules.sort
+      let { title, category, time, publish, sort } = clone(this.ruleForm)
+
+      category = category[0] == 'all' ? '' : category.join('/')
+      const start_time = time[0] ? time[0].valueOf() : ''
+      const end_time = time[0] ? time[1].valueOf() : ''
+      publish = publish == -1 ? '' : publish
+      sort = sort == 1 ? 'ASC' : 'DESC'
+      let params = { title, category, start_time, end_time, publish, sort }
       this.$emit('filter-submit', params)
     },
     resetForm(formName) {

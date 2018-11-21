@@ -64,16 +64,43 @@ let insertArticle = async ctx => {
 let getArticleList = async ctx => {
   try {
     let req = ctx.request.query;
-    let { parseInt } = Number;
-    let page = parseInt((req.page - 1) * req.pagesize);
-    let pagesize = parseInt(req.pagesize);
-    console.log(page);
+    let { page, pagesize } = req;
+    delete req.page;
+    delete req.pagesize;
+    let conditions = {};
+    let sort = {};
+    if (Object.hasOwnProperty.call(req, "title")) {
+      sort = { createTime: req.sort };
+      delete req.sort;
+      //   let conditionsKey = "";
+      const keys = Object.keys(req);
+      keys.forEach(key => {
+        value = req[key];
+        if (value) {
+          switch (key) {
+            case "category":
+            case "title":
+              value = new RegExp(value, "i");
+              break;
+            case "start_time":
+              key = "createTime";
+              value = { $gte: req.start_time, $lte: req.end_time };
+              delete req.end_time;
+              break;
+          }
+          conditions[key] = value;
+        }
+      });
+    }
+
+    page = parseInt((page - 1) * pagesize);
+    pagesize = parseInt(pagesize);
     let list = await article
-      .find({}, { __v: 0, content: 0, original: 0, list: 0 })
+      .find(conditions, { __v: 0, content: 0, original: 0, list: 0 })
       .skip(page)
       .limit(pagesize)
-      .sort({ _id: -1 });
-    let count = await article.countDocuments({});
+      .sort(sort);
+    let count = await article.count(conditions);
     ctx.body = {
       error: 0,
       count,
