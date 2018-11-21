@@ -12,11 +12,11 @@
           placeholder="请输入文章标题"
         ></el-input>
       </el-form-item>
-      <el-form-item label="类别:" prop="categery">
+      <el-form-item label="类别:" prop="category">
         <el-cascader
           placeholder="请选择文章类别"
-          :options="categeryList"
-          v-model="ruleForm.categery"
+          :options="categoryList"
+          v-model="ruleForm.category"
           :change-on-select="true"
         ></el-cascader>
       </el-form-item>
@@ -55,15 +55,15 @@
   </div>
 </template>
 <script>
-import categeryList from '@/constant/category-list.json'
-import { clone } from '@/assets/js/util.js'
+import categoryList from '@/constant/category-list.json'
+import { clone } from '@/assets/js/utils.js'
 export default {
   data() {
     return {
-      categeryList,
+      categoryList,
       ruleForm: {
         title: '',
-        categery: [],
+        category: [],
         time: [],
         publish: 0,
         sort: 0
@@ -75,7 +75,7 @@ export default {
       let rules = clone(this.ruleForm)
       let params = {}
       params.title = rules.title
-      params.categery = rules.categery.join('/')
+      params.category = rules.category.join('/')
       params.start_time = rules.time[0] ? rules.time[0].valueOf() : ''
       params.end_time = rules.time[0] ? rules.time[1].valueOf() : ''
       params.publish = rules.publish

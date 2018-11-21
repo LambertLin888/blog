@@ -15,4 +15,6 @@ router.post("/article/insertArticle", article.insertArticle);
 router.get("/article/getArticleList", article.getArticleList);
 /*文章详情接口*/
 router.get("/article/getArticleDetail", article.getArticleDetail);
+/*删除文章接口*/
+router.post("/article/deleteArticle", article.deleteArticle);
 module.exports = router;

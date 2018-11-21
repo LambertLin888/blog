@@ -15,5 +15,8 @@ const getArticleList = params => {
 const getArticleDetail = params => {
   return axios.get(`${baseurl}/api/article/getArticleDetail`, params)
 }
+const deleteArticle = params => {
+  return axios.post(`${baseurl}/api/article/deleteArticle`, params)
+}
 
-export { insertArticle, getArticleList, getArticleDetail }
+export { insertArticle, getArticleList, getArticleDetail, deleteArticle }

@@ -11,27 +11,40 @@ const article = require("../models/articleSchema");
  * private API
  * @method insert
  * @param {object} 接收发布文章接口传递对象值
- * @return {object|null}  insert Front article
+ * @return {object|null}  insert article
  */
 
 let insertArticle = async ctx => {
   try {
-    const params = ctx.request.body;
-    console.log("param:" + params);
-    const result = await article.updateOne({ title: params.title }, params, {
-      upsert: true
-    });
-    let { ok } = result;
-    if (ok == 1) {
-      ctx.body = {
-        status: 0,
-        message: "已发布"
-      };
+    const query = ctx.request.body;
+    let result = {};
+    if (query.id) {
+      result = await article.updateOne({ _id: query.id }, query, {
+        upsert: true
+      });
+      if (result.n == 1) {
+        ctx.body = {
+          status: 0,
+          message: "更新成功"
+        };
+      } else {
+        ctx.body = {
+          status: 1,
+          message: "发布成功"
+        };
+      }
+      return;
     } else {
-      ctx.body = {
-        status: 1,
-        message: "发布失败"
-      };
+      result = await article.insertMany(query);
+      if (result.length > 0) {
+        result[0].id = result[0]._id;
+        ctx.body = {
+          status: 0,
+          message: "已发布",
+          data: result[0]
+        };
+        return;
+      }
     }
   } catch (e) {
     ctx.body = {
@@ -79,19 +92,49 @@ let getArticleList = async ctx => {
  *@return {object|null} return Article Detail
  */
 
-let getArticleDetail = async (ctx, next) => {
+let getArticleDetail = async ctx => {
   try {
     let req = ctx.request.query;
     let { id } = req;
-    let result = await article.find({ _id: id });
+    let result = await article.findOne({ _id: id });
+    result.id = result._id;
     ctx.body = {
-      error: 0,
-      info: result
+      status: 0,
+      data: result
     };
   } catch (e) {
     ctx.body = {
       error: 1,
-      error: e
+      error: ""
+    };
+  }
+};
+/**
+ *public API
+ *@param {String} id delete Article
+ *@return {object|null} return status
+ */
+
+let deleteArticle = async ctx => {
+  try {
+    let req = ctx.request.body;
+    let { id } = req;
+    let result = await article.deleteOne({ _id: id });
+    if (result.n == 1) {
+      ctx.body = {
+        status: 0,
+        message: "删除成功"
+      };
+    } else {
+      ctx.body = {
+        error: 1,
+        error: "删除失败"
+      };
+    }
+  } catch (e) {
+    ctx.body = {
+      error: 1,
+      error: "删除失败"
     };
   }
 };
@@ -99,5 +142,6 @@ let getArticleDetail = async (ctx, next) => {
 module.exports = {
   insertArticle,
   getArticleList,
-  getArticleDetail
+  getArticleDetail,
+  deleteArticle
 };

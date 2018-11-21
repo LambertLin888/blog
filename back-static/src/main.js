@@ -24,7 +24,8 @@ import {
   FormItem,
   Switch,
   Table,
-  TableColumn
+  TableColumn,
+  MessageBox
 } from 'element-ui'
 import './registerServiceWorker'
 
@@ -49,6 +50,7 @@ Vue.use(FormItem)
 Vue.use(Switch)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(MessageBox)
 new Vue({
   router,
   store,

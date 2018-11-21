@@ -17,17 +17,36 @@
         <div class="demo-input-suffix">
           类别
           <el-cascader
-            :options="categeryList"
-            v-model="detail.categery"
-            @change="changeCategory"
+            :options="categoryList"
+            v-model="detail.category"
             :change-on-select="true"
           ></el-cascader>
         </div>
       </el-col>
-      <el-col :span="11">
+      <el-col :span="8">
         是否公开 &nbsp;
         <el-radio v-model="detail.publish" label="1">是</el-radio>
         <el-radio v-model="detail.publish" label="0">否</el-radio>
+      </el-col>
+      <el-col :span="3">
+        <el-button
+          span="1"
+          type="primary"
+          @click="
+            showConfirm('此操作将会覆盖原来的内容，是否继续？', submitHandle)
+          "
+        >
+          发布
+        </el-button>
+        <el-button
+          span="1"
+          type="primary"
+          @click="
+            showConfirm('此操作将会永久删除当前文章，是否继续？', deleteHandle)
+          "
+        >
+          删除
+        </el-button>
       </el-col>
       <el-col :span="24">
         <div class="demo-input-suffix">
@@ -49,50 +68,48 @@
       placeholder="开始编写文章内容..."
       style="min-height:600px;"
     />
-    <el-col :span="2" :offset="22">
-      <el-button span="1" push="23" class="btn-submit" @click="submitArticle">
-        发布文章
-      </el-button>
-    </el-col>
   </div>
 </template>
 
 <script>
 import { mavonEditor } from 'mavon-editor'
-import { insertArticle, getArticleDetail } from '@/api.js'
-import { clone } from '@/assets/js/util.js'
-import categeryList from '@/constant/category-list.json'
+import { insertArticle, getArticleDetail, deleteArticle } from '@/api.js'
+import { clone } from '@/assets/js/utils.js'
+import categoryList from '@/constant/category-list.json'
 export default {
   components: {
     mavonEditor
   },
   data() {
     return {
-      categeryList,
-      id: '',
+      categoryList,
       detail: {
         title: '',
         content: '',
         originalContent: '',
         des: '',
         publish: '1',
-        categery: []
+        category: ['IT'],
+        id: '',
+        createTime: 0
       }
     }
   },
   mounted() {
-    this.getArticle()
+    let id = this.$route.params.id
+    if (id == '0') {
+      this.detail.id = ''
+      return
+    }
+    this.detail.id = id
+    this.getArticle(id)
   },
   methods: {
     changeContent(value, render) {
       this.detail.originalContent = render
       this.detail.content = value
     },
-    changeCategory(value) {
-      console.log(value)
-      this.detail.categery = value
-    },
-    submitArticle() {
+    submitHandle() {
       if (this.detail.title == '') {
         this.$message({ message: '请输入文章标题', type: 'warning' })
         return
@@ -105,34 +122,61 @@ export default {
         return
       }
       let params = clone(this.detail)
-      params.categery = params.categery.toString()
-      if (this.id != '') {
+      params.category = params.category.toString()
+      if (!params.createTime) {
         params.createTime = new Date().valueOf()
       }
       insertArticle(params).then(res => {
-        let { status } = res.data
+        let { status, data, message } = res.data
+        if (data) {
+          this.$router.push({ name: 'editor', params: { id: data.id } })
+          this.id = this.detail.id
+        }
         if (Object.is(status, 0)) {
           this.$message({
-            message: '发布成功',
+            message,
             type: 'success'
           })
         } else {
-          this.$message.error('发布失败')
+          this.$message.error(message)
         }
       })
     },
-    getArticle() {
-      if (!this.$route.params.id) {
-        return
-      }
-      const id = this.$route.params.id
-      this.id = id
+    deleteHandle() {
+      deleteArticle({ id: this.detail.id }).then(res => {
+        let { status, message } = res.data
+        if (Object.is(status, 0)) {
+          this.$message({
+            message,
+            type: 'success'
+          })
+          const timeout = window.setTimeout(() => {
+            this.$router.push({ name: 'article-list' })
+            window.clearTimeout(timeout)
+          }, 3000)
+        } else {
+          this.$message.error(message)
+        }
+      })
+    },
+    getArticle(id) {
       getArticleDetail({
         params: { id }
       }).then(result => {
-        let params = result.data.info[0]
-        params.categery = params.categery.split(',')
-        this.detail = params
+        if (result.data.status == 0) {
+          let params = result.data.data
+          params.category = params.category.split(',')
+          this.detail = params
+        }
+      })
+    },
+    showConfirm(msg, cb) {
+      this.$confirm(msg, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        cb()
       })
     }
   }

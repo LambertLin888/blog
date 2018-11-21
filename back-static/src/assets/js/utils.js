@@ -59,4 +59,38 @@ function cloneArr(arr, isDeep) {
   return ret
 }
 
-export { clone }
+/**
+ * 日期格式化
+ */
+/**
+ * 格式化日期
+ * @param  {string} [fmt=yyyy-MM-dd]  格式化串，支持的格式化原子：y-年，M-月，d-天，h-时，m-分，s-秒，S-毫秒，q-季度
+ * @param  {Date | number} [date] 日期或日期毫秒数
+ * @return {string}      返回格式化后的内容
+ */
+function formatDate(fmt = 'yyyy-MM-dd', date) {
+  const realDate = date ? new Date(date) : new Date()
+  const o = {
+    'M+': realDate.getMonth() + 1,
+    'd+': realDate.getDate(),
+    'h+': realDate.getHours(),
+    'm+': realDate.getMinutes(),
+    's+': realDate.getSeconds(),
+    'q+': Math.floor((realDate.getMonth() + 3) / 3),
+    S: realDate.getMilliseconds()
+  }
+  if (/(y+)/.test(fmt)) {
+    const y = (realDate.getFullYear() + '').substr(4 - RegExp.$1.length)
+    fmt = fmt.replace(RegExp.$1, y)
+  }
+  for (const k in o) {
+    if (new RegExp('(' + k + ')').test(fmt)) {
+      const d =
+        RegExp.$1.length === 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length)
+      fmt = fmt.replace(RegExp.$1, '' + d)
+    }
+  }
+  return fmt
+}
+
+export { clone, formatDate }
