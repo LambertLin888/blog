@@ -39,6 +39,7 @@
           发布
         </el-button>
         <el-button
+          v-if="!initArticle"
           span="1"
           type="primary"
           @click="
@@ -82,6 +83,7 @@ export default {
   },
   data() {
     return {
+      initArticle: true,
       categoryList,
       detail: {
         title: '',
@@ -101,6 +103,7 @@ export default {
       this.detail.id = ''
       return
     }
+    this.initArticle = false
     this.detail.id = id
     this.getArticle(id)
   },
@@ -130,7 +133,8 @@ export default {
         let { status, data, message } = res.data
         if (data) {
           this.$router.push({ name: 'editor', params: { id: data.id } })
-          this.id = this.detail.id
+          this.detail.id = data.id
+          this.initArticle = false
         }
         if (Object.is(status, 0)) {
           this.$message({
@@ -171,6 +175,10 @@ export default {
       })
     },
     showConfirm(msg, cb) {
+      if (this.initArticle) {
+        cb()
+        return
+      }
       this.$confirm(msg, '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',

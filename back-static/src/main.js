@@ -43,14 +43,14 @@ Vue.use(Input)
 Vue.use(Icon)
 Vue.use(Menu)
 Vue.use(Pagination)
-Vue.use(Message)
+Vue.component(Message)
 Vue.use(Cascader)
 Vue.use(Form)
 Vue.use(FormItem)
 Vue.use(Switch)
 Vue.use(Table)
 Vue.use(TableColumn)
-Vue.use(MessageBox)
+Vue.component(MessageBox)
 new Vue({
   router,
   store,

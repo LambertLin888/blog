@@ -15,7 +15,7 @@
       <el-form-item label="类别:" prop="category">
         <el-cascader
           placeholder="请选择文章类别"
-          :options="getCacategoryList"
+          :options="categoryList"
           v-model="ruleForm.category"
           :change-on-select="true"
         ></el-cascader>
@@ -56,11 +56,12 @@
   </div>
 </template>
 <script>
-import categoryList from '@/constant/category-list.json'
+import categoryListJson from '@/constant/category-list.json'
 import { clone } from '@/assets/js/utils.js'
 export default {
   data() {
     return {
+      categoryList: [],
       ruleForm: {
         title: '',
         category: ['all'],
@@ -70,11 +71,9 @@ export default {
       }
     }
   },
-  computed: {
-    getCacategoryList() {
-      categoryList.unshift({ value: 'all', label: '全部' })
-      return categoryList
-    }
+  mounted() {
+    this.categoryList = clone(categoryListJson)
+    this.categoryList.unshift({ value: 'all', label: '全部' })
   },
   methods: {
     submitForm() {

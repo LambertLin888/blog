@@ -45,7 +45,7 @@
           class="pagination"
           background
           layout="prev, pager, next"
-          :current-page="listData.current_page"
+          :current-page.sync="listData.current_page"
           @current-change="getData"
         />
       </el-col>
@@ -74,12 +74,11 @@ export default {
     }
   },
   mounted() {
-    console.log('day:' + formatDate())
     this.getData()
   },
   methods: {
     filterSubmit(params) {
-      this.listData.current_page = 1
+      this.listData.current_page = 0
       this.filterRules = params
       this.getData()
     },

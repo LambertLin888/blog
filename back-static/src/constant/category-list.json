@@ -22,20 +22,20 @@
         ]
       },
       {
-        "value": "java",
-        "label": "前端",
+        "value": "back",
+        "label": "后台",
         "children": [
           {
-            "value": "js",
-            "label": "Js"
+            "value": "nginx",
+            "label": "nginx"
           },
           {
-            "value": "CSS",
-            "label": "CSS"
+            "value": "databook",
+            "label": "数据库"
           },
           {
-            "value": "html",
-            "label": "html"
+            "value": "security",
+            "label": "数据安全"
           }
         ]
       },
