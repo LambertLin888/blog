@@ -1,53 +1,71 @@
-<template>
-  <div>
-    <Navbar :active="active"/>
-    <el-row
-      type="flex"
-      justify="center">
-      <el-col
-        :span="14"
-        class="detail_title">
-        <div>{{ title }}</div>
-        <div class="time">发布时间：{{ time }}&nbsp;&nbsp;&nbsp;&nbsp;分类：{{ type === '' ? '前端文章' : '后端文章' }}</div>
-      </el-col>
 
-    </el-row>
-    <el-row
-      type="flex"
-      justify="center">
+<template>
+  <div class="g-detail">
+    <!-- <Navbar/> -->
+    <el-row >
       <el-col
-        :span="14"
-        class="detail_content">
-        <el-card>
-          <div v-show="!content">暂无文章数据...</div>
-          <div
-            class="md markdown-body"
-            v-html="content"/>
-        </el-card>
+        :span="12"
+        :offset="6">
+        <h1 class="title">
+          <span>{{ title }}</span>
+        </h1>
+        <el-row class="tips">
+          <el-col :span="1">
+            <img
+              class="face"
+              src="https://upload.jianshu.io/users/upload_avatars/8679037/eaf94c11-90a4-4494-bcb2-155f7eb620d4.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
+            >
+          </el-col >
+          <el-col
+            :span="15">
+            <p class="name">lambert乐</p>
+            <div class="meta">
+              <span>&nbsp;<i class="el-icon-date"/>&nbsp;{{ createTime }}</span>
+              <span>&nbsp;<i class="el-icon-view"/>&nbsp;浏览(115)&nbsp;</span>
+              <span class="icon-type">&nbsp;{{ category }}</span>
+            </div>
+
+          </el-col>
+        </el-row>
+        <div
+          class= "content"
+          v-html="originalContent" >
+          <!-- <pre>
+           <code v-html="originalContent" />
+          </pre> -->
+        </div>
       </el-col>
     </el-row>
   </div>
 </template>
 
+
 <script>
 import Navbar from '~/components/Navbar.vue'
 import { getArticleDetail } from '~/plugins/api.js'
-import { debug } from 'util'
+import { formatArticleContent } from '~/assets/js/utils.js'
 export default {
   components: {
     Navbar
   },
-  data() {
-    return {
-      active: 'index'
-    }
-  },
+  data() {},
   async asyncData({ app, params }) {
-    let json = { id: params.id }
-    let result = await getArticleDetail({ params: json })
-    let { error, list } = result.data
-    let { content, des, type, time, title } = list[0]
-    return { title, des, content, type, time }
+    debugger
+    let result = await getArticleDetail({ params: { id: params.id } })
+    let { status, data } = result.data
+    return formatArticleContent(data)
+  },
+
+  getArticle(id) {
+    getArticleDetail({
+      params: { id }
+    }).then(result => {
+      if (result.data.status == 0) {
+        let params = result.data.data
+        params.category = params.category.split(',')
+        this.detail = params
+      }
+    })
   },
   head() {
     return {

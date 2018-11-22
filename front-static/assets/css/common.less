@@ -7,3 +7,86 @@
 */
 @globalColor: #00c1de;
 @globalBgColor: #1c2327;
+html,
+body {
+  min-width: 1200px;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  overflow: auto;
+  color: #333;
+  font-size: 16px;
+  font-family: 'PingFang SC', 'Microsoft Yahei', Lato, 'Helvetica Neue', Arial,
+    SimSun, Helvetica, STHeiTi, 'Roboto Regular', Roboto, 'Droid Sans',
+    sans-serif;
+  font-weight: normal;
+}
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+a,
+p,
+textarea {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+a {
+  background: transparent;
+  text-decoration: none;
+  -webkit-text-decoration-skip: objects;
+  cursor: pointer;
+}
+
+img {
+  border: none;
+  display: block;
+}
+
+/*清除浮动*/
+.clearfloat:after {
+  display: block;
+  clear: both;
+  content: '';
+  visibility: hidden;
+  height: 0;
+}
+.clearfloat {
+  zoom: 1;
+}
+
+.g-main {
+  margin: auto;
+  max-width: 1200px;
+  width: 100%;
+}
+//////// end \\\\\\\\
+/////////////////////
+
+.clearfix:after {
+  content: '.';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}

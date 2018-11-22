@@ -58,7 +58,7 @@
 <script>
 import { getArticleList } from '@/api.js'
 // import categoryList from '@/constant/category-list.json'
-import { formatDate } from '@/assets/js/utils.js'
+import { formatArticleContent } from '@/assets/js/utils.js'
 import FilterForm from '@/components/FilterForm.vue'
 export default {
   components: { FilterForm },
@@ -82,18 +82,6 @@ export default {
       this.filterRules = params
       this.getData()
     },
-    mapCategory(category) {
-      if (!category) {
-        return ''
-      } else return category
-    },
-    mapCreateTime(time) {
-      if (!time) {
-        return ''
-      }
-      time = formatDate('yyyy-MM-dd hh:ss:mm', parseInt(time))
-      return time
-    },
     getData(page = 1) {
       getArticleList({
         params: {
@@ -103,14 +91,7 @@ export default {
         }
       }).then(res => {
         let { count, list } = res.data
-        list.map(item => {
-          item.createTime = this.mapCreateTime(item.createTime)
-          item.category = this.mapCategory(item.category)
-          item.publish = item.publish == '1' ? '是' : '否'
-          item.id = item._id
-          return item
-        })
-        this.listData.list = list
+        this.listData.list = formatArticleContent(list)
         this.listData.count = count
       })
     },

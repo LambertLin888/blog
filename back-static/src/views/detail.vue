@@ -1,21 +1,23 @@
 <template>
   <div class="g-detail">
     <el-row type="flex" justify="center">
-      <el-col :span="14" class="detail_title">
-        <div>{{ detail.title }}</div>
-        <div class="time">
-          发布时间：{{ detail.time }}&nbsp;&nbsp;&nbsp;&nbsp;分类：{{
-            detail.category === '' ? '前端文章' : '后端文章'
-          }}
+      <el-col :span="14">
+        <h1 class="title">
+          <span>{{ title }}</span>
+        </h1>
+        <div class="sub-title">
+          <img
+            class="face"
+            src="https://upload.jianshu.io/users/upload_avatars/8679037/eaf94c11-90a4-4494-bcb2-155f7eb620d4.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
+          />
+          <div class="tips">
+            <p class="name">linbenjian</p>
+            <p class="time">
+              2018.10.11 14:57* 字数 668 阅读 3443评论 40喜欢 61
+            </p>
+          </div>
         </div>
-      </el-col>
-    </el-row>
-    <el-row type="flex" justify="center">
-      <el-col :span="14" class="detail_content">
-        <el-card>
-          <div v-show="!detail.content">暂无文章数据...</div>
-          <div class="md markdown-body" v-html="detail.originalContent" />
-        </el-card>
+        <div class="md markdown-body" v-html="detail.originalContent" />
       </el-col>
     </el-row>
   </div>

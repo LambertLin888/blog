@@ -6,8 +6,8 @@
       <el-col
         :span="24"
         class="footer">
-        <div>COPYRIGHT © 2018 LINBENJIAN </div>
-        <div>&nbsp;粤ICP备18003757号</div>
+        <div>COPYRIGHT © 2018 LINBENJIAN</div>
+        <div>&nbsp;粤ICP备18141397号</div>
       </el-col>
     </el-row>
   </div>

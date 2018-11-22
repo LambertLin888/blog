@@ -69,7 +69,7 @@ let getArticleList = async ctx => {
     delete req.pagesize;
     let conditions = {};
     let sort = {};
-    if (Object.hasOwnProperty.call(req, "title")) {
+    if (Object.keys(req).length > 0) {
       sort = { createTime: req.sort };
       delete req.sort;
       //   let conditionsKey = "";

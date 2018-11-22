@@ -92,8 +92,8 @@ export default {
   },
   data() {
     return {
-      name: 'lambert num 1',
-      active: 'index'
+      name: 'lambert num 1'
+      // active: 'index'
     }
   },
   async asyncData({ app }) {
@@ -101,7 +101,8 @@ export default {
     let { data } = await getArticleList({ params: json })
     let { list, count } = data
     let lately = list.slice(0, 4)
-    return { list, count, lately }
+    let active = 'IT'
+    return { list, count, lately, active }
   },
   methods: {
     pagination(page) {
