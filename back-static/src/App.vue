@@ -31,15 +31,4 @@ body {
 a {
   text-decoration: none;
 }
-.router-view {
-  margin-top: 30px;
-}
-// #app {
-//   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-//   z-index: 1;
-//   text-align: center;
-//   color: #2c3e50;
-// }
 </style>

@@ -11,6 +11,7 @@ const json = require("koa-json");
 const cors = require("koa-cors");
 const consola = require("consola");
 const bodyparser = require("koa-bodyparser");
+const session = require("koa-session");
 const api = require("./routes/api");
 
 const app = new Koa();
@@ -22,7 +23,8 @@ let config = require("../front-static/nuxt.config.js");
 config.dev = !(app.env === "production");
 
 async function start() {
-  // middlewares
+  app.keys = ["some secret hurr"];
+  app.use(session(app));
   app.use(
     bodyparser({
       enableTypes: ["json", "form", "text"]

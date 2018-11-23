@@ -17,6 +17,7 @@
     "koa-cors": "0.0.16",
     "koa-json": "^2.0.2",
     "koa-router": "^7.4.0",
+    "koa-session": "^5.10.0",
     "koa-views": "^6.1.4",
     "mongoose": "^5.3.12",
     "nuxt": "^2.0.0"

@@ -18,5 +18,21 @@ const getArticleDetail = params => {
 const deleteArticle = params => {
   return axios.post(`${baseurl}/api/article/deleteArticle`, params)
 }
-
-export { insertArticle, getArticleList, getArticleDetail, deleteArticle }
+const login = params => {
+  return axios.post(`${baseurl}/api/user/login`, params)
+}
+const logout = () => {
+  return axios.post(`${baseurl}/api/user/logout`)
+}
+const register = params => {
+  return axios.post(`${baseurl}/api/user/register`, params)
+}
+export {
+  insertArticle,
+  getArticleList,
+  getArticleDetail,
+  deleteArticle,
+  logout,
+  login,
+  register
+}

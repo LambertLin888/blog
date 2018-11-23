@@ -63,19 +63,19 @@ let insertArticle = async ctx => {
 
 let getArticleList = async ctx => {
   try {
-    let req = ctx.request.query;
-    let { page, pagesize } = req;
-    delete req.page;
-    delete req.pagesize;
+    let params = ctx.request.query;
+    let { page, pagesize } = params;
+    delete params.page;
+    delete params.pagesize;
     let conditions = {};
     let sort = {};
-    if (Object.keys(req).length > 0) {
-      sort = { createTime: req.sort };
-      delete req.sort;
+    if (Object.keys(params).length > 0) {
+      sort = { createTime: params.sort };
+      delete params.sort;
       //   let conditionsKey = "";
-      const keys = Object.keys(req);
+      const keys = Object.keys(params);
       keys.forEach(key => {
-        value = req[key];
+        value = params[key];
         if (value) {
           switch (key) {
             case "category":
@@ -84,8 +84,8 @@ let getArticleList = async ctx => {
               break;
             case "start_time":
               key = "createTime";
-              value = { $gte: req.start_time, $lte: req.end_time };
-              delete req.end_time;
+              value = { $gte: params.start_time, $lte: params.end_time };
+              delete params.end_time;
               break;
           }
           conditions[key] = value;
@@ -121,8 +121,8 @@ let getArticleList = async ctx => {
 
 let getArticleDetail = async ctx => {
   try {
-    let req = ctx.request.query;
-    let { id } = req;
+    let params = ctx.request.query;
+    let { id } = params;
     let result = await article.findOne({ _id: id });
     result.id = result._id;
     ctx.body = {
@@ -144,8 +144,8 @@ let getArticleDetail = async ctx => {
 
 let deleteArticle = async ctx => {
   try {
-    let req = ctx.request.body;
-    let { id } = req;
+    let params = ctx.request.body;
+    let { id } = params;
     let result = await article.deleteOne({ _id: id });
     if (result.n == 1) {
       ctx.body = {
