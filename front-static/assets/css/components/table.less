@@ -1,5 +1,6 @@
 @import url('../common.less');
 .g-com-table {
+  margin-top: 40px;
   .item {
     position: relative;
     width: 100%;
@@ -59,16 +60,24 @@
           background: url('../../images/icon-type.svg') center no-repeat;
           position: absolute;
           background-size: 100%;
-          top: 3px;
+          top: 1px;
           left: 2px;
         }
       }
     }
   }
-  .pagination {
-    text-align: center;
+  .btn-more {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #a5a5a5;
+    &:hover {
+      background-color: #9b9b9b;
+    }
   }
-}
-.el-pagination.is-background .el-pager li:not(.disabled).active {
-  background-color: @globalColor !important;
+  .el-button--primary {
+    border-color: #a5a5a5;
+    &:hover {
+      background-color: #9b9b9b;
+    }
+  }
 }

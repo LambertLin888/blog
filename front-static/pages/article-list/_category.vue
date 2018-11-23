@@ -3,8 +3,8 @@
     <Navbar :active="active"/>
     <el-row class="main">
       <el-col
-        :span="12"
-        :offset="4">
+        :span="11"
+        :offset="6">
         <Table
           :category = "category"
           :pagesize = "pagesize"
@@ -12,8 +12,8 @@
           :count = "count"/>
       </el-col>
       <el-col
-        :offset="2"
-        :span="5" />
+        :offset="1"
+        :span="6" />
     </el-row>
 
 
@@ -26,7 +26,7 @@ import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
 import Table from '~/components/Table.vue'
 import { getArticleList } from '~/plugins/api.js'
-import { formatDate, formatArticleContent } from '~/assets/js/utils.js'
+import { formatArticleContent } from '~/assets/js/utils.js'
 
 export default {
   components: {

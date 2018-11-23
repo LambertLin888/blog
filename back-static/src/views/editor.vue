@@ -110,7 +110,6 @@ export default {
   methods: {
     changeContent(value, render) {
       this.detail.originalContent = render
-      this.detail.content = value
     },
     submitHandle() {
       if (this.detail.title == '') {

@@ -1,9 +1,18 @@
 @import '../common.less';
-.navbar {
+.g-nav {
+  height: 60px;
+  width: 100%;
+  z-index: 1501;
+  position: relative;
+}
+.g-navbar {
   background: @globalBgColor;
   width: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   .logo {
-    line-height: 65px;
+    line-height: 60px;
     font-size: 35px;
     color: @globalColor;
     text-decoration: none;
@@ -24,7 +33,7 @@
       }
     }
     li {
-      line-height: 65px;
+      line-height: 60px;
       font-size: 18px;
       -webkit-user-select: none;
       span {

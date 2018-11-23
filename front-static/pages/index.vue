@@ -1,46 +1,19 @@
-/**
- * @author linbenjian
- * @email benjianlin@foxmail.com
- * @modify date 2018-11-20 11:14:41
- * @desc 前端静态页面入口
-*/
+
 <template>
   <div>
     <Navbar :active="active"/>
-    <el-row
-      type="flex"
-      justify="center"
-      class="content-blog">
-      <el-col :span="10">
-        <nuxt-link
-          v-for="item in list"
-          :key="item._id"
-          :to="{name:'article-detail-id',params:{id:item._id}}"
-          class="box-href">
-          <el-card
-            class="box-card"
-            shadow="hover">
-            <h2 class="box-title">{{ item.title }}</h2>
-            <div class="box-icon">
-              <span><i class="el-icon-date"/>&nbsp;{{ item.time }}</span>
-              <!-- <span><i class="el-icon-view"></i>&nbsp;115次阅读</span> -->
-            </div>
-            <div class="box-content">{{ item.des }}</div>
-          </el-card>
-        </nuxt-link>
-
-        <el-pagination
-          :page-size="5"
-          :total="count"
-          class="pagination"
-          background
-          layout="prev, pager, next"
-          @current-change="pagination"/>
-      </el-col>
-      <!-- 右侧关于我 -->
+    <el-row class="main">
       <el-col
-        :span="5"
-        :offset="1">
+        :span="11"
+        :offset="5">
+        <Table
+          :pagesize = "pagesize"
+          :list = "list"
+          :count = "count"/>
+      </el-col>
+      <el-col
+        :offset="2"
+        :span="5" >
         <el-card class="about">
           <div class="about-title">about Me</div>
           <div class="about-name"/>
@@ -87,13 +60,16 @@
 </template>
 
 <script>
+import Table from '~/components/Table.vue'
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
 import { getArticleList } from '~/plugins/api.js'
+import { formatArticleContent } from '~/assets/js/utils.js'
 export default {
   components: {
     Navbar,
-    Footer
+    Footer,
+    Table
   },
   data() {
     return {
@@ -101,20 +77,12 @@ export default {
     }
   },
   async asyncData({ app }) {
-    let json = { page: 1, pagesize: 5 }
-    let { data } = await getArticleList({ params: json })
+    let pagesize = 7
+    let options = { page: 1, pagesize }
+    let { data } = await getArticleList({ params: options })
     let { list, count } = data
-    let lately = list.slice(0, 4)
-    return { list, count, lately }
-  },
-  methods: {
-    pagination(page) {
-      let json = { page, pagesize: 5 }
-      getArticleList({ params: json }).then(res => {
-        let { error, count, list } = res.data
-        this.list = list
-      })
-    }
+    list = formatArticleContent(list)
+    return { list, count, pagesize }
   },
   head() {
     return {

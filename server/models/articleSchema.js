@@ -11,7 +11,6 @@ const db = require("./db");
 let articleSchema = new mongoose.Schema({
   id: String, //同_id
   title: String, //文章标题
-  content: String, //文章内容
   originalContent: String, //html内容
   createTime: Number, //创建时间
   des: String, //文章简介

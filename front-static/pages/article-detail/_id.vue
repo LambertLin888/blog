@@ -1,24 +1,23 @@
 
 <template>
   <div class="g-detail">
-    <!-- <Navbar/> -->
+    <Navbar/>
     <el-row >
       <el-col
-        :span="12"
-        :offset="6">
+        :span="10"
+        :offset="7">
         <h1 class="title">
           <span>{{ title }}</span>
         </h1>
         <el-row class="tips">
-          <el-col :span="1">
+          <!-- <el-col :span="2">
             <img
               class="face"
               src="https://upload.jianshu.io/users/upload_avatars/8679037/eaf94c11-90a4-4494-bcb2-155f7eb620d4.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
             >
-          </el-col >
-          <el-col
-            :span="15">
-            <p class="name">lambert乐</p>
+          </el-col > -->
+          <el-col>
+            <!-- <p class="name">lambert乐</p> -->
             <div class="meta">
               <span>&nbsp;<i class="el-icon-date"/>&nbsp;{{ createTime }}</span>
               <span>&nbsp;<i class="el-icon-view"/>&nbsp;浏览(115)&nbsp;</span>
@@ -29,24 +28,23 @@
         </el-row>
         <div
           class= "content"
-          v-html="originalContent" >
-          <!-- <pre>
-           <code v-html="originalContent" />
-          </pre> -->
-        </div>
+          v-html="originalContent" />
       </el-col>
     </el-row>
+    <Footer/>
   </div>
 </template>
 
 
 <script>
 import Navbar from '~/components/Navbar.vue'
+import Footer from '~/components/Footer.vue'
 import { getArticleDetail } from '~/plugins/api.js'
 import { formatArticleContent } from '~/assets/js/utils.js'
 export default {
   components: {
-    Navbar
+    Navbar,
+    Footer
   },
   data() {},
   async asyncData({ app, params }) {

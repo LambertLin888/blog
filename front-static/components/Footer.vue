@@ -6,8 +6,7 @@
       <el-col
         :span="24"
         class="footer">
-        <div>COPYRIGHT © 2018 LINBENJIAN</div>
-        <div>&nbsp;粤ICP备18141397号</div>
+        <div>COPYRIGHT © 2018 LINBENJIAN&nbsp;粤ICP备18141397号</div>
       </el-col>
     </el-row>
   </div>
@@ -16,12 +15,8 @@
 <style lang="less">
 @import url('../assets/css/common.less');
 .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 8rem;
   height: 60px;
-  background: @globalBgColor;
+  // background: @globalBgColor;
   color: #999;
   text-align: center;
   line-height: 60px;
