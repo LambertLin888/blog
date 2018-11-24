@@ -145,9 +145,11 @@ let getArticleDetail = async ctx => {
     }
     let data = await article.findOne({ id }, projection);
     let { readingCount } = data;
+    readingCount = readingCount || 1;
     if (platform != "back") {
-      data.readingCount = (readingCount && ++readingCount) || 1;
+      ++readingCount;
     }
+    data.readingCount = readingCount;
     ctx.body = {
       status: 0,
       data
