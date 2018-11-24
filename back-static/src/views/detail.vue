@@ -1,23 +1,28 @@
 <template>
   <div class="g-detail">
-    <el-row type="flex" justify="center">
-      <el-col :span="14">
+    <el-row>
+      <el-col :span="10" :offset="7">
         <h1 class="title">
-          <span>{{ title }}</span>
+          <span>{{ detail.title }}</span>
         </h1>
-        <div class="sub-title">
-          <img
-            class="face"
-            src="https://upload.jianshu.io/users/upload_avatars/8679037/eaf94c11-90a4-4494-bcb2-155f7eb620d4.jpg?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
-          />
-          <div class="tips">
-            <p class="name">linbenjian</p>
-            <p class="time">
-              2018.10.11 14:57* 字数 668 阅读 3443评论 40喜欢 61
-            </p>
-          </div>
-        </div>
-        <div class="md markdown-body" v-html="detail.originalContent" />
+        <el-row class="tips">
+          <el-col>
+            <div class="meta">
+              <span
+                >&nbsp;<i class="el-icon-date" />&nbsp;{{
+                  detail.createTime
+                }}</span
+              >
+              <span
+                >&nbsp;<i class="el-icon-view" />&nbsp;浏览({{
+                  detail.readingCount
+                }})&nbsp;</span
+              >
+              <span class="icon-type">&nbsp;{{ detail.category }}</span>
+            </div>
+          </el-col>
+        </el-row>
+        <div class="html-content" v-html="detail.originalContent" />
       </el-col>
     </el-row>
   </div>
@@ -25,31 +30,32 @@
 
 <script>
 import { getArticleDetail } from '@/api.js'
+import { formatArticleContent } from '@/assets/js/utils.js'
 export default {
   data() {
     return {
-      active: 'article-list',
       detail: {
         title: '',
-        time: '',
-        type: '',
-        content: ''
-      },
-      error: {}
+        createTime: '',
+        readingCount: 1,
+        originalContent: '',
+        category: ''
+      }
     }
   },
-  beforeRouteEnter(to, from, next) {
-    getArticleDetail({ params: { id: to.params.id } }).then(result => {
-      let { error, info } = result.data
-      next(vm => {
-        vm.detail = info[0]
-        vm.error = error
-      })
-      next()
+  mounted() {
+    let id = this.$route.params.id
+    getArticleDetail({
+      params: { id }
+    }).then(result => {
+      if (result.data.status == 0) {
+        let params = result.data.data
+        this.detail = formatArticleContent(params)
+      }
     })
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="less">
 @import '../assets/css/views/detail.less';
 </style>
