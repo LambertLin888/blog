@@ -12,10 +12,13 @@ let articleSchema = new mongoose.Schema({
   id: String, //同_id
   title: String, //文章标题
   originalContent: String, //html内容
+  content: String, //内容
   createTime: Number, //创建时间
   des: String, //文章简介
   publish: String, //是否公开
-  category: String //类别
+  category: String, //类别
+  keys: String, //<head>的key
+  readingCount: Number //阅读数
 });
 
 let articleModel = db.model("Article", articleSchema);

@@ -23,11 +23,11 @@
               target="_blank"
               href="/p/4044bc2f7533">{{ item.title }}</span></nuxt-link>
           <p class="des">
-            {{ item.des }}
+            {{ item.originalContent }}
           </p>
           <div class="meta">
             <span>&nbsp;<i class="el-icon-date"/>&nbsp;{{ item.createTime }}</span>
-            <span>&nbsp;<i class="el-icon-view"/>&nbsp;浏览(115)&nbsp;</span>
+            <span>&nbsp;<i class="el-icon-view"/>&nbsp;浏览({{ item.readingCount }})&nbsp;</span>
             <span class="icon-type">&nbsp;{{ item.category }}</span>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default {
     return {
       articleList: this.list,
       articleCount: this.count,
-      page: 2
+      page: 1
     }
   },
   computed: {
@@ -83,7 +83,7 @@ export default {
     getData() {
       getArticleList({
         params: {
-          page: this.page,
+          page: ++this.page,
           pagesize: this.pagesize,
           category: this.category
         }
@@ -92,7 +92,6 @@ export default {
         list = formatArticleContent(list)
         this.articleList = this.page == 1 ? list : this.articleList.concat(list)
         this.articleCount = count
-        this.page++
       })
     }
   }

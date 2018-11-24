@@ -13,46 +13,8 @@
       </el-col>
       <el-col
         :offset="2"
-        :span="5" >
-        <el-card class="about">
-          <div class="about-title">about Me</div>
-          <div class="about-name"/>
-          <div class="about-content">
-            <p>lambert-lin</p>
-            <p>Web前端工程师</p>
-            <p>benjianlin@foxmail.com</p>
-          </div>
-        </el-card>
-        <!-- 近期文章开始 -->
-        <el-card class="article">
-          <div class="article-title">近期文章</div>
-          <hr>
-          <nuxt-link
-            v-for="item in lately"
-            :key="item._id"
-            :to="{name:'article-detail-id',params:{id:item._id}}"
-            class="article-link">
-            <i class="el-icon-edit"/>&nbsp;&nbsp;{{ item.title }}
-          </nuxt-link>
-        </el-card>
-        <!-- 近期文章结束 -->
-
-        <!-- 友情链接开始 -->
-        <el-card class="link">
-          <div class="link-title">友情链接</div>
-          <hr>
-          <div class="link-content">
-            <a
-              href="/"
-              target="_blank"
-              class="link-url">虚位以待</a>
-            <a
-              href="/"
-              target="_blank"
-              class="link-url">虚位以待</a>
-          </div>
-        </el-card>
-        <!-- 友情链接结束 -->
+        :span="4" >
+        <Push/>
       </el-col>
     </el-row>
     <Footer/>
@@ -63,13 +25,15 @@
 import Table from '~/components/Table.vue'
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
+import Push from '~/components/Push.vue'
 import { getArticleList } from '~/plugins/api.js'
 import { formatArticleContent } from '~/assets/js/utils.js'
 export default {
   components: {
     Navbar,
     Footer,
-    Table
+    Table,
+    Push
   },
   data() {
     return {

@@ -108,7 +108,6 @@ const formatArticleContent = content => {
       item.createTime =
         (createTime && formatDate('yyyy-MM-dd', parseInt(createTime))) || ''
       item.category = (category && category.split(',')[0]) || ''
-      item.id = item._id
       return item
     })
     return content

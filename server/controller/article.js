@@ -19,7 +19,7 @@ let insertArticle = async ctx => {
     const query = ctx.request.body;
     let result = {};
     if (query.id) {
-      result = await article.updateOne({ _id: query.id }, query, {
+      result = await article.updateOne({ id: query.id }, query, {
         upsert: true
       });
       if (result.n == 1) {
@@ -37,12 +37,13 @@ let insertArticle = async ctx => {
     } else {
       result = await article.insertMany(query);
       if (result.length > 0) {
-        result[0].id = result[0]._id;
+        id = result[0].id = result[0]._id;
         ctx.body = {
           status: 0,
           message: "已发布",
           data: result[0]
         };
+        await article.updateOne({ _id: id }, { id }, { upsert: true });
         return;
       }
     }
@@ -64,15 +65,21 @@ let insertArticle = async ctx => {
 let getArticleList = async ctx => {
   try {
     let params = ctx.request.query;
-    let { page, pagesize } = params;
+    let { page, pagesize, platform } = params;
     delete params.page;
     delete params.pagesize;
     let conditions = {};
     let sort = {};
+    let projection = { __v: 0, _id: 0, content: 0 };
+    if (platform != "back") {
+      projection.publish = 0;
+    } else {
+      //   projection.originalContent = 0;
+    }
+    delete params.platform;
     if (Object.keys(params).length > 0) {
       sort = { createTime: params.sort };
       delete params.sort;
-      //   let conditionsKey = "";
       const keys = Object.keys(params);
       keys.forEach(key => {
         value = params[key];
@@ -92,15 +99,23 @@ let getArticleList = async ctx => {
         }
       });
     }
-
     page = parseInt((page - 1) * pagesize);
     pagesize = parseInt(pagesize);
     let list = await article
-      .find(conditions, { __v: 0, content: 0, original: 0, list: 0 })
+      .find(conditions, projection)
       .skip(page)
       .limit(pagesize)
       .sort(sort);
     let count = await article.count(conditions);
+    list.map(item => {
+      let { originalContent, readingCount } = item;
+      item.originalContent =
+        (originalContent &&
+          originalContent.replace(/<\/?.+?\/?>/g, "").slice(1, 90)) + " ..." ||
+        null;
+      item.readingCount = readingCount || 0;
+      return item;
+    });
     ctx.body = {
       error: 0,
       count,
@@ -122,13 +137,24 @@ let getArticleList = async ctx => {
 let getArticleDetail = async ctx => {
   try {
     let params = ctx.request.query;
-    let { id } = params;
-    let result = await article.findOne({ _id: id });
-    result.id = result._id;
+    let { id, platform } = params;
+    let projection = { __v: 0, _id: 0 };
+    if (platform != "back") {
+      projection.content = 0;
+      projection.publish = 0;
+    }
+    let data = await article.findOne({ id }, projection);
+    let { readingCount } = data;
+    if (platform != "back") {
+      data.readingCount = (readingCount && ++readingCount) || 1;
+    }
     ctx.body = {
       status: 0,
-      data: result
+      data
     };
+    if (platform != "back") {
+      await article.updateOne({ id }, { readingCount }, { upsert: true });
+    }
   } catch (e) {
     ctx.body = {
       error: 1,

@@ -4,7 +4,7 @@
     <el-row class="main">
       <el-col
         :span="11"
-        :offset="6">
+        :offset="5">
         <Table
           :category = "category"
           :pagesize = "pagesize"
@@ -12,11 +12,11 @@
           :count = "count"/>
       </el-col>
       <el-col
-        :offset="1"
-        :span="6" />
+        :offset="2"
+        :span="4" >
+        <Push/>
+      </el-col>
     </el-row>
-
-
     <Footer/>
   </div>
 </template>
@@ -25,6 +25,7 @@
 import Navbar from '~/components/Navbar.vue'
 import Footer from '~/components/Footer.vue'
 import Table from '~/components/Table.vue'
+import Push from '~/components/Push.vue'
 import { getArticleList } from '~/plugins/api.js'
 import { formatArticleContent } from '~/assets/js/utils.js'
 
@@ -32,7 +33,8 @@ export default {
   components: {
     Navbar,
     Footer,
-    Table
+    Table,
+    Push
   },
   data() {
     const active = this.$route.params.category || 'index'

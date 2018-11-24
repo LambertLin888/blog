@@ -1,24 +1,25 @@
 <template>
   <div class="g-article-list">
     <FilterForm v-on:filter-submit="filterSubmit" />
-
     <el-row type="flex" justify="center" class="content-blog">
-      <el-col :span="18">
+      <el-col :span="19">
         <el-table :data="listData.list" style="width: 100%">
-          <el-table-column prop="title" label="标题" width="160">
+          <el-table-column prop="title" label="标题" width="220">
           </el-table-column>
           <el-table-column prop="createTime" label="创建时间" width="160">
           </el-table-column>
-
-          <el-table-column prop="publish" label="是否公开" width="160">
+          <el-table-column prop="readingCount" label="阅读数(次数)" width="110">
           </el-table-column>
 
-          <el-table-column prop="category" label="类别" width="160">
+          <el-table-column prop="publish" label="是否公开" width="100">
+          </el-table-column>
+
+          <el-table-column prop="category" label="类别" width="120">
           </el-table-column>
           <el-table-column
             prop="des"
             label="概述"
-            width="160"
+            width="140"
             :show-overflow-tooltip="true"
           >
           </el-table-column>
@@ -57,7 +58,6 @@
 
 <script>
 import { getArticleList } from '@/api.js'
-// import categoryList from '@/constant/category-list.json'
 import { formatArticleContent } from '@/assets/js/utils.js'
 import FilterForm from '@/components/FilterForm.vue'
 export default {

@@ -104,20 +104,21 @@ const formatArticleContent = content => {
       return []
     }
     content.map(item => {
-      let { createTime, category } = item
+      let { createTime, category, publish } = item
       item.createTime =
         (createTime && formatDate('yyyy-MM-dd', parseInt(createTime))) || ''
       item.category = (category && category.split(',')[0]) || ''
-      item.id = item._id
+      item.publish = publish == '1' ? '是' : '否'
       return item
     })
     return content
   } else {
-    let { createTime, category } = content
+    let { createTime, category, publish } = content
     content.createTime =
       (createTime && formatDate('yyyy-MM-dd hh:mm:ss', parseInt(createTime))) ||
       ''
     content.category = category || ''
+    content.publish = publish == '1' ? '是' : '否'
     return content
   }
 }
