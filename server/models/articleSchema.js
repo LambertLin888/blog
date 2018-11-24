@@ -18,7 +18,8 @@ let articleSchema = new mongoose.Schema({
   publish: String, //是否公开
   category: String, //类别
   keys: String, //<head>的key
-  readingCount: Number //阅读数
+  readingCount: Number, //阅读数
+  thumb: String
 });
 
 let articleModel = db.model("Article", articleSchema);

@@ -5,23 +5,20 @@
         v-for="item in articleList"
         :key="item.id"
         class="item">
-        <a
-          class="wrap-img"
-          href="/p/4044bc2f7533"
-          target="_blank">
+        <nuxt-link
+          v-show="item.thumb"
+          :to="{name:'article-detail-id',params:{id:item.id}}"
+          class="wrap-img">
           <img
+            :src="item.thumb"
             class="img-blur"
-            src="//upload-images.jianshu.io/upload_images/8717551-d436ce17e20673c9.png?imageMogr2/auto-orient/strip|imageView2/1/w/300/h/240"
-            alt="120">
-        </a>
+            alt="120"></nuxt-link>
         <div class="content">
           <nuxt-link
 
             :to="{name:'article-detail-id',params:{id:item.id}}">
             <span
-              class="title"
-              target="_blank"
-              href="/p/4044bc2f7533">{{ item.title }}</span></nuxt-link>
+              class="title">{{ item.title }}</span></nuxt-link>
           <p class="des">
             {{ item.originalContent }}
           </p>

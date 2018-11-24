@@ -109,10 +109,17 @@ let getArticleList = async ctx => {
     let count = await article.count(conditions);
     list.map(item => {
       let { originalContent, readingCount } = item;
-      item.originalContent =
-        (originalContent &&
-          originalContent.replace(/<\/?.+?\/?>/g, "").slice(1, 90)) + " ..." ||
-        null;
+      if (platform != "back") {
+        item.originalContent =
+          (originalContent &&
+            originalContent.replace(/<\/?.+?\/?>/g, "").slice(1, 90)) +
+            " ..." || null;
+        let matchs = originalContent.match(
+          /https?:\/\/(.+)\.(png|jpg|gif|bmp|jpeg)/
+        );
+        item.thumb = (matchs && matchs[0]) || null;
+      }
+
       item.readingCount = readingCount || 0;
       return item;
     });
