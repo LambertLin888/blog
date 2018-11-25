@@ -5,17 +5,8 @@
         v-for="item in articleList"
         :key="item.id"
         class="item">
-        <nuxt-link
-          v-show="item.thumb"
-          :to="{name:'article-detail-id',params:{id:item.id}}"
-          class="wrap-img">
-          <img
-            :src="item.thumb"
-            class="img-blur"
-            alt="120"></nuxt-link>
-        <div class="content">
+        <div :class="!item.thumb?'content hike-content':'content'">
           <nuxt-link
-
             :to="{name:'article-detail-id',params:{id:item.id}}">
             <span
               class="title">{{ item.title }}</span></nuxt-link>
@@ -28,6 +19,14 @@
             <span class="icon-type">&nbsp;{{ item.category }}</span>
           </div>
         </div>
+        <nuxt-link
+          v-if="item.thumb"
+          :to="{name:'article-detail-id',params:{id:item.id}}"
+          class="wrap-img">
+          <img
+            :src="item.thumb"
+            class="img-blur"
+            alt="120"></nuxt-link>
       </li>
     </ul>
     <el-button
