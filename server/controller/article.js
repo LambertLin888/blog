@@ -65,21 +65,17 @@ let insertArticle = async ctx => {
 let getArticleList = async ctx => {
   try {
     let params = ctx.request.query;
-    let { page, pagesize, platform } = params;
+    let { page, pagesize, platform, sort } = params;
     delete params.page;
     delete params.pagesize;
+    delete params.sort;
     let conditions = {};
-    let sort = {};
     let projection = { __v: 0, _id: 0, content: 0 };
     if (platform != "back") {
       projection.publish = 0;
-    } else {
-      //   projection.originalContent = 0;
     }
     delete params.platform;
     if (Object.keys(params).length > 0) {
-      sort = { createTime: params.sort };
-      delete params.sort;
       const keys = Object.keys(params);
       keys.forEach(key => {
         value = params[key];

@@ -83,7 +83,7 @@ export default {
       const start_time = time[0] ? time[0].valueOf() : ''
       const end_time = time[0] ? time[1].valueOf() : ''
       publish = publish == -1 ? '' : publish
-      sort = sort == 1 ? 'ASC' : 'DESC'
+      sort = sort == 1 ? 'createTime' : '-createTime'
       let params = { title, category, start_time, end_time, publish, sort }
       this.$emit('filter-submit', params)
     },

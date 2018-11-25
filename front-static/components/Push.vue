@@ -64,10 +64,10 @@ export default {
     }
   },
   mounted() {
-    this.getData({ sort: 'ASC' }).then(list => {
+    this.getData({ sort: '-createTime' }).then(list => {
       this.newList = list
     })
-    this.getData({ sort: 'DESC' }).then(list => {
+    this.getData({ sort: '-readingCount' }).then(list => {
       this.hotList = list
     })
   },
