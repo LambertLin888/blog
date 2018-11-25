@@ -49,13 +49,24 @@
           删除
         </el-button>
       </el-col>
-      <el-col :span="24">
+      <el-col :span="13">
         <div class="demo-input-suffix">
           <span>简介</span>
           <el-input
             class="input-des"
-            placeholder="请输入文章简介"
+            placeholder="请输入文章description(for SEO)"
             v-model="detail.des"
+          >
+          </el-input>
+        </div>
+      </el-col>
+      <el-col :span="9">
+        <div class="demo-input-suffix">
+          <span>关键字</span>
+          <el-input
+            class="input-des"
+            placeholder="请输入文章keywords(用半角逗号隔开)"
+            v-model="detail.keywords"
           >
           </el-input>
         </div>
@@ -93,6 +104,7 @@ export default {
         publish: '1',
         category: ['IT'],
         id: '',
+        keywords: '',
         createTime: 0
       }
     }
@@ -114,13 +126,6 @@ export default {
     submitHandle() {
       if (this.detail.title == '') {
         this.$message({ message: '请输入文章标题', type: 'warning' })
-        return
-      }
-      if (
-        this.detail.original === '0' &&
-        this.detail.originalUrl.trim() == ''
-      ) {
-        this.$message({ message: '请输入原文链接', type: 'warning' })
         return
       }
       let params = clone(this.detail)

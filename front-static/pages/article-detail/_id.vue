@@ -69,7 +69,8 @@ export default {
       title: this.title,
       meta: [
         { hid: 'description', name: 'description', content: `${this.des}` },
-        { hid: 'author', content: 'brian' }
+        { hid: 'keywords', name: 'keywords', content: `${this.keywords}` },
+        { hid: 'author', content: 'linbenjian' }
       ]
     }
   }

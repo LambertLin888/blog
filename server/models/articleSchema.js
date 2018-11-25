@@ -17,7 +17,7 @@ let articleSchema = new mongoose.Schema({
   des: String, //文章简介
   publish: String, //是否公开
   category: String, //类别
-  keys: String, //<head>的key
+  keywords: String, //<head>的key
   readingCount: Number, //阅读数
   thumb: String
 });
