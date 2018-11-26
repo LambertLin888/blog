@@ -5,8 +5,8 @@
       class="g-navbar"
       justify="center">
       <el-col
-        :span="19"
-        :offset="4">
+        :span="21"
+        :offset="2">
         <nuxt-link
           :to="{name:'index'}"
           class="logo">lambert</nuxt-link>

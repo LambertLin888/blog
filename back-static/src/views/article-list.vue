@@ -2,28 +2,59 @@
   <div class="g-article-list">
     <FilterForm v-on:filter-submit="filterSubmit" />
     <el-row type="flex" justify="center" class="content-blog">
-      <el-col :span="19">
-        <el-table :data="listData.list" style="width: 100%">
-          <el-table-column prop="title" label="标题" width="220">
+      <el-col :span="20">
+        <el-table :data="listData.list">
+          <el-table-column
+            prop="title"
+            header-align="center"
+            label="标题"
+            width="220"
+          >
           </el-table-column>
-          <el-table-column prop="createTime" label="创建时间" width="160">
+          <el-table-column
+            prop="createTime"
+            align="center"
+            label="创建时间"
+            width="160"
+          >
           </el-table-column>
-          <el-table-column prop="readingCount" label="阅读数(次数)" width="110">
+          <el-table-column
+            prop="readingCount"
+            align="center"
+            label="阅读数"
+            width="100"
+          >
           </el-table-column>
 
-          <el-table-column prop="publish" label="是否公开" width="100">
+          <el-table-column
+            prop="publish"
+            align="center"
+            label="是否公开"
+            width="110"
+          >
           </el-table-column>
 
-          <el-table-column prop="category" label="类别" width="120">
+          <el-table-column
+            prop="category"
+            align="center"
+            label="类别"
+            width="190"
+          >
           </el-table-column>
           <el-table-column
             prop="des"
+            header-align="center"
             label="概述"
-            width="140"
+            width="200"
             :show-overflow-tooltip="true"
           >
           </el-table-column>
-          <el-table-column fixed="right" label="操作" width="120">
+          <el-table-column
+            align="center"
+            fixed="right"
+            label="操作"
+            width="100"
+          >
             <template slot-scope="scope">
               <el-button
                 @click="goDetailHandle(scope.row.id)"
