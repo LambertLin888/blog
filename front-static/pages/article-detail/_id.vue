@@ -47,7 +47,6 @@ export default {
   },
   data() {},
   async asyncData({ app, params }) {
-    debugger
     let result = await getArticleDetail({ params: { id: params.id } })
     let { status, data } = result.data
     return formatArticleContent(data)

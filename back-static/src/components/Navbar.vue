@@ -50,7 +50,6 @@ export default {
       this.$router.push({ name: key, params })
     },
     goLogout() {
-      debugger
       logout().then(res => {
         let { status, message } = res.data
         if (Object.is(status, 0)) {

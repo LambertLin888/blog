@@ -100,7 +100,6 @@ const formatDate = (fmt = 'yyyy-MM-dd', date) => {
  * @return {Array}      返回格式化后的内容
  */
 const formatArticleContent = (content, categoryList = categoryOriginList) => {
-  debugger
   if (Array.isArray(content)) {
     if (content.length == 0) {
       return []

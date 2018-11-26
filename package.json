@@ -1,0 +1,26 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "linbenjian's blog",
+  "main": "/front-static/dist/index.html",
+  "scripts": {
+    "postinstall": "cd back-static && npm install && cd ../front-static && npm install && cd ../server && npm install",
+    "dev-back-static": "cd back-static && npm run serve",
+    "dev-front-static": "cd front-static && npm run dev",
+    "dev-server": "cd server && npm run dev",
+    "build-back-static": "cd back-static && npm run build",
+    "build-front-static": "cd front-static && npm run build",
+    "build-server": "cd server && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LambertLin888/blog.git"
+  },
+  "author": "linbenjian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LambertLin888/blog/issues"
+  },
+  "homepage": "https://github.com/LambertLin888/blog#readme"
+}
