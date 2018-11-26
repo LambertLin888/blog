@@ -2,7 +2,7 @@
   <div class="g-nav">
     <el-row type="flex" class="g-navbar" justify="center">
       <el-col :span="6" :offset="3">
-        <a href="http://localhost:8000/" class="logo">文章管理后台</a>
+        <a href="/" class="logo">博客管理后台</a>
       </el-col>
       <el-col :span="13">
         <el-menu
