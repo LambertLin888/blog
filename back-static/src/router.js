@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import ArticleList from './views/article-list.vue'
+import About from './views/about.vue'
+import Editor from './views/editor.vue'
+import Detail from './views/detail.vue'
+import Login from './views/login.vue'
 
 Vue.use(Router)
 
@@ -16,29 +20,22 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ './views/about.vue')
+      component: About
     },
     {
       path: '/editor/:id',
       name: 'editor',
-      component: () =>
-        import(/* webpackChunkName: "editor" */ './views/editor.vue')
+      component: Editor
     },
     {
       path: '/detail/:id',
       name: 'detail',
-      component: () =>
-        import(/* webpackChunkName: "detail" */ './views/detail.vue')
+      component: Detail
     },
     {
       path: '/login',
       name: 'login',
-      component: () =>
-        import(/* webpackChunkName: "login" */ './views/login.vue')
+      component: Login
     }
   ]
 })
