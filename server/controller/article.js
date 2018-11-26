@@ -73,6 +73,7 @@ let getArticleList = async ctx => {
     let projection = { __v: 0, _id: 0, content: 0 };
     if (platform != "back") {
       projection.publish = 0;
+      conditions.publish = "1";
     }
     delete params.platform;
     if (Object.keys(params).length > 0) {
