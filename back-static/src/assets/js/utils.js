@@ -4,6 +4,7 @@
  * @param  {boolean} [isDeep=false] 是否深拷贝，默认浅拷贝
  * @return {*}         返回拷贝后的数据
  */
+import categoryOriginList from '@/constant/category-list.json'
 const primitiveTypes = ['undefined', 'string', 'number', 'boolean']
 const clone = (data, isDeep = false) => {
   if (data === null) {
@@ -95,9 +96,10 @@ const formatDate = (fmt = 'yyyy-MM-dd', date) => {
 /**
  * 格式化返回的文章列表
  * @param  {Array|Object}
+ * @param  categoryList {Array|Object} 类别原数据
  * @return {Array}      返回格式化后的内容
  */
-const formatArticleContent = content => {
+const formatArticleContent = (content, categoryList = categoryOriginList) => {
   debugger
   if (Array.isArray(content)) {
     if (content.length == 0) {
@@ -106,8 +108,10 @@ const formatArticleContent = content => {
     content.map(item => {
       let { createTime, category, publish } = item
       item.createTime =
-        (createTime && formatDate('yyyy-MM-dd', parseInt(createTime))) || ''
-      item.category = (category && category.split(',')[0]) || ''
+        (createTime &&
+          formatDate('yyyy-MM-dd hh:mm:ss', parseInt(createTime))) ||
+        ''
+      item.category = formatCategory(category, categoryList)
       item.publish = publish == '1' ? '是' : '否'
       return item
     })
@@ -117,9 +121,26 @@ const formatArticleContent = content => {
     content.createTime =
       (createTime && formatDate('yyyy-MM-dd hh:mm:ss', parseInt(createTime))) ||
       ''
-    content.category = category || ''
+    content.category = formatCategory(category, categoryList)
     content.publish = publish == '1' ? '是' : '否'
     return content
   }
+}
+const formatCategory = (category, categoryList) => {
+  if (!category || !categoryList) {
+    return ''
+  }
+  let categoryNameList = []
+  category = category.split(',') || []
+  for (let value of category) {
+    for (let item of categoryList) {
+      if ((item[value] = value)) {
+        categoryNameList.push(item.label)
+        categoryList = item.children
+        break
+      }
+    }
+  }
+  return categoryNameList.join('/')
 }
 export { clone, formatDate, formatArticleContent }
