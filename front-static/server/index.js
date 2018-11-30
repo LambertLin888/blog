@@ -9,7 +9,7 @@ let port = process.env.PORT || 10001
 let serverHost = 'http://localhost:10002'
 if (process.env.NODE_ENV == 'production') {
   port = 20001
-  serverHost = 'www.linbenjian.work'
+  serverHost = 'http://127.0.0.1:20002'
 }
 
 // Import and Set Nuxt.js options
