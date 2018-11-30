@@ -7,9 +7,10 @@ const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 let port = process.env.PORT || 10001
 let serverHost = 'http://localhost:10002'
+let isProduction = false
 if (process.env.NODE_ENV == 'production') {
   port = 20001
-  serverHost = 'http://127.0.0.1:20002'
+  isProduction = true
 }
 
 // Import and Set Nuxt.js options
@@ -24,12 +25,15 @@ async function start() {
     const builder = new Builder(nuxt)
     await builder.build()
   }
-  app.use(
-    proxy({
-      host: serverHost, // proxy alicdn.com...
-      match: /^\/api\// // ...just the /static folder
-    })
-  )
+  if (!isProduction) {
+    app.use(
+      proxy({
+        host: serverHost, // proxy alicdn.com...
+        match: /^\/api\// // ...just the /static folder
+      })
+    )
+  }
+
   app.use(ctx => {
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset
 
