@@ -1,8 +1,8 @@
 import axios from 'axios'
 let baseurl =
   process.env.NODE_ENV === 'production'
-    ? 'http://api.linbenjian.work'
-    : 'http://localhost:3000'
+    ? 'http://localhost:20001'
+    : 'http://localhost:10001'
 
 const getArticleList = params => {
   return axios.get(`${baseurl}/api/article/getArticleList`, params)

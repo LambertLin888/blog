@@ -1,27 +1,28 @@
 {
-  "name": "blog-serevr",
-  "version": "1.0.0",
-  "description": "suppor front and end",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env NODE_ENV=development nodemon --inspect index.js --watch server"
-  },
-  "keywords": [
-    "koa"
-  ],
-  "dependencies": {
-    "cross-env": "^5.2.0",
-    "koa": "^2.5.2",
-    "koa-bodyparser": "^4.2.1",
-    "koa-cors": "0.0.16",
-    "koa-json": "^2.0.2",
-    "koa-router": "^7.4.0",
-    "koa-session": "^5.10.0",
-    "koa-views": "^6.1.4",
-    "mongoose": "^5.3.12",
-    "nuxt": "^2.0.0"
-  },
-  "author": "linbenjian",
-  "license": "ISC"
+    "name": "blog-serevr",
+    "version": "1.0.0",
+    "description": "suppor front and end",
+    "main": "index.js",
+    "scripts": {
+        "start": "cross-env NODE_ENV=development nodemon --inspect index.js --watch server",
+        "start-test": "cross-env NODE_ENV=test nodemon index.js",
+        "start-prod": "cross-env NODE_ENV=production nodemon index.js "
+    },
+    "keywords": [
+        "koa"
+    ],
+    "dependencies": {
+        "cross-env": "^5.2.0",
+        "koa": "^2.5.2",
+        "koa-bodyparser": "^4.2.1",
+        "koa-cors": "0.0.16",
+        "koa-json": "^2.0.2",
+        "koa-router": "^7.4.0",
+        "koa-session": "^5.10.0",
+        "koa-views": "^6.1.4",
+        "mongoose": "^5.3.12",
+        "nuxt": "^2.0.0"
+    },
+    "author": "linbenjian",
+    "license": "ISC"
 }
