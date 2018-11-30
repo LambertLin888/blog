@@ -6,10 +6,10 @@ const { Nuxt, Builder } = require('nuxt')
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 let port = process.env.PORT || 10001
-let serverPort = 10002;
-if (process.env.NODE_ENV == "production") {
-  port = 20001;
-  serverPort = 20002;
+let serverHost = 'http://localhost:10002'
+if (process.env.NODE_ENV == 'production') {
+  port = 20001
+  serverPort = 'www.linbenjian.work'
 }
 
 // Import and Set Nuxt.js options
@@ -26,7 +26,7 @@ async function start() {
   }
   app.use(
     proxy({
-      host: `http://localhost:${serverPort}`, // proxy alicdn.com...
+      host: serverHost, // proxy alicdn.com...
       match: /^\/api\// // ...just the /static folder
     })
   )
