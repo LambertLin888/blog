@@ -16,7 +16,7 @@ const db = mongoose.createConnection(dbUrl, { useNewUrlParser: true });
 db.once("open", callback => {
   console.log("数据库连接成功");
 });
-db.on("error", callback => {
-  console.log("数据库连接失败");
+db.on("error", error => {
+  console.log("数据库连接失败:" + JSON.stringify(error));
 });
 module.exports = db;
