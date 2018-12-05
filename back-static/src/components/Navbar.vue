@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { logout } from '@/api.js'
+// import { logout } from '@/api.js'
 export default {
   props: {
     active: {
