@@ -13,11 +13,11 @@
           mode="horizontal"
           @select="handleSelect"
         >
-          <el-menu-item index="article-list"
-            ><span>我的博文</span></el-menu-item
-          >
-          <el-menu-item index="editor"><span>写文章</span></el-menu-item>
-          <el-menu-item index="about"><span>简介</span></el-menu-item>
+          <el-menu-item index="article-list">
+            <span>我的博文</span>
+          </el-menu-item>
+          <el-menu-item index="editor"> <span>写文章</span> </el-menu-item>
+          <el-menu-item index="about"> <span>简介</span> </el-menu-item>
         </el-menu>
       </el-col>
       <el-col :span="1">
@@ -50,21 +50,25 @@ export default {
       this.$router.push({ name: key, params })
     },
     goLogout() {
-      logout().then(res => {
-        let { status, message } = res.data
-        if (Object.is(status, 0)) {
-          const timeout = window.setTimeout(() => {
-            this.$router.push({ name: 'login' })
-            window.clearTimeout(timeout)
-          }, 3000)
-          this.$message({
-            message,
-            type: 'success'
-          })
-        } else {
-          this.$message.error(message)
-        }
-      })
+      window.localStorage.removeItem('isLogin')
+      this.$router.push({ name: 'login' })
+
+      //   logout().then(res => {
+      //     let { status, message } = res.data
+      //     if (Object.is(status, 0)) {
+      //       const timeout = window.setTimeout(() => {
+      //         window.clearTimeout(timeout)
+      //         window.localStorage.removeItem('isLogin')
+      //         this.$router.push({ name: 'login' })
+      //       }, 3000)
+      //       this.$message({
+      //         message,
+      //         type: 'success'
+      //       })
+      //     } else {
+      //       this.$message.error(message)
+      //     }
+      //   })
     }
   }
 }

@@ -2,7 +2,7 @@ import axios from 'axios'
 let baseurl =
   process.env.NODE_ENV === 'production'
     ? 'http://back.linbenjian.work'
-    : 'http://localhost:1002'
+    : 'http://localhost:9001'
 axios.interceptors.request.use(
   config => {
     // Do something before request is sent

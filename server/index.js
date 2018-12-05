@@ -17,9 +17,9 @@ const api = require("./routes/api");
 const app = new Koa();
 const host = process.env.HOST || "127.0.0.1";
 
-let port = 1002;
+let port = 9001;
 if (process.env.NODE_ENV == "production") {
-  port = 2002;
+  port = 9002;
 }
 
 // Import and Set Nuxt.js options

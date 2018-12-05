@@ -24,7 +24,8 @@
             type="primary"
             class="btn-submit"
             @click="onSubmit"
-            :loading="loading"
+            :disabled="spending"
+            :loading="spending"
             >登录</el-button
           >
         </el-form-item>
@@ -37,7 +38,7 @@ import { login } from '@/api.js'
 export default {
   data() {
     return {
-      loading: false,
+      spending: false,
       form: {
         username: '',
         password: ''
@@ -53,6 +54,7 @@ export default {
   computed: {},
   methods: {
     onSubmit() {
+      if (this.spending) return
       let { username, password } = this.form
       if (username.trim() == '') {
         this.$message({
@@ -70,14 +72,13 @@ export default {
       }
       login(this.form).then(res => {
         let { status, message } = res.data
-        this.loading = true
+        this.spending = true
         if (Object.is(status, 0)) {
-          const timeout = window.setTimeout(() => {
-            this.$router.push({ name: 'article-list' })
-            window.clearTimeout(timeout)
-          }, 3000)
+          window.localStorage.setItem('isLogin', '1')
+          this.$router.push({ name: 'article-list' })
         } else {
-          this.loading = false
+          this.spending = false
+          this.disabled = ''
           this.$message.error(message)
         }
       })

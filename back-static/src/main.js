@@ -5,6 +5,7 @@ import store from './store'
 import Element from 'element-ui/lib/element-ui.common'
 import locale from 'element-ui/lib/locale/lang/en'
 import 'mavon-editor/dist/css/index.css'
+
 import {
   Button,
   Select,
@@ -28,6 +29,15 @@ import {
   MessageBox
 } from 'element-ui'
 import './registerServiceWorker'
+
+router.beforeEach((to, from, next) => {
+  const isLogin = window.localStorage.getItem('isLogin')
+  if (isLogin || to.name == 'login') {
+    next()
+  } else {
+    router.push({ name: 'login' })
+  }
+})
 
 Vue.config.productionTip = false
 Vue.use(Element, { locale })
