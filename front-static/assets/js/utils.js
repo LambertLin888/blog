@@ -129,7 +129,7 @@ const formatCategory = (category, categoryList) => {
   category = category.split(',') || []
   for (let value of category) {
     for (let item of categoryList) {
-      if ((item[value] = value)) {
+      if (item.value == value) {
         categoryNameList.push(item.label)
         categoryList = item.children
         break
