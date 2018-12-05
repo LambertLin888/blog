@@ -10,6 +10,7 @@ let serverHost = 'http://localhost:10002'
 let isProduction = false
 if (process.env.NODE_ENV == 'production') {
   port = 20001
+  serverHost = 'http://localhost:20002'
   isProduction = true
 }
 
@@ -25,14 +26,14 @@ async function start() {
     const builder = new Builder(nuxt)
     await builder.build()
   }
-  if (!isProduction) {
-    app.use(
-      proxy({
-        host: serverHost, // proxy alicdn.com...
-        match: /^\/api\// // ...just the /static folder
-      })
-    )
-  }
+  // if (!isProduction) {
+  app.use(
+    proxy({
+      host: serverHost, // proxy alicdn.com...
+      match: /^\/api\// // ...just the /static folder
+    })
+  )
+  // }
 
   app.use(ctx => {
     ctx.status = 200 // koa defaults to 404 when it sees that status is unset
