@@ -1,8 +1,8 @@
 import axios from 'axios'
 let baseurl =
   process.env.NODE_ENV === 'production'
-    ? 'http://localhost:20002'
-    : 'http://localhost:10002'
+    ? 'http://localhost:2002'
+    : 'http://localhost:1002'
 axios.interceptors.request.use(
   config => {
     // Do something before request is sent
@@ -27,30 +27,30 @@ axios.interceptors.response.use(
 )
 
 const insertArticle = params => {
-  return axios.post(`${baseurl}/api/article/insertArticle`, params)
+  return axios.post(`/api/article/insertArticle`, params)
 }
 
 const getArticleList = params => {
-  return axios.get(`${baseurl}/api/article/getArticleList`, {
+  return axios.get(`/api/article/getArticleList`, {
     platform: 'back',
     ...params
   })
 }
 
 const getArticleDetail = params => {
-  return axios.get(`${baseurl}/api/article/getArticleDetail`, params)
+  return axios.get(`/api/article/getArticleDetail`, params)
 }
 const deleteArticle = params => {
-  return axios.post(`${baseurl}/api/article/deleteArticle`, params)
+  return axios.post(`/api/article/deleteArticle`, params)
 }
 const login = params => {
-  return axios.post(`${baseurl}/api/user/login`, params)
+  return axios.post(`/api/user/login`, params)
 }
 const logout = () => {
-  return axios.post(`${baseurl}/api/user/logout`)
+  return axios.post(`/api/user/logout`)
 }
 const register = params => {
-  return axios.post(`${baseurl}/api/user/register`, params)
+  return axios.post(`/api/user/register`, params)
 }
 export {
   insertArticle,

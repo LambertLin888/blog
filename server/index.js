@@ -17,32 +17,31 @@ const api = require("./routes/api");
 const app = new Koa();
 const host = process.env.HOST || "127.0.0.1";
 
-let port = 10002;
+let port = 1002;
 if (process.env.NODE_ENV == "production") {
-    port = 20002;
+  port = 2002;
 }
-
 
 // Import and Set Nuxt.js options
 // let config = require("../front-static/nuxt.config.js");
 // config.dev = !(app.env === "production");
 
 async function start() {
-    app.keys = ["some secret hurr"];
-    app.use(session(app));
-    app.use(
-        bodyparser({
-            enableTypes: ["json", "form", "text"]
-        })
-    );
-    app.use(cors());
-    app.use(json());
-    app.use(api.routes(), api.allowedMethods());
-    app.listen(port, host);
-    consola.ready({
-        message: `Server listening on http://${host}:${port}`,
-        badge: true
-    });
+  app.keys = ["some secret hurr"];
+  app.use(session(app));
+  app.use(
+    bodyparser({
+      enableTypes: ["json", "form", "text"]
+    })
+  );
+  app.use(cors());
+  app.use(json());
+  app.use(api.routes(), api.allowedMethods());
+  app.listen(port, host);
+  consola.ready({
+    message: `Server listening on http://${host}:${port}`,
+    badge: true
+  });
 }
 
 start();
