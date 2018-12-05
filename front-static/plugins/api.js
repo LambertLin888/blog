@@ -1,7 +1,7 @@
 import axios from 'axios'
 let baseurl =
   process.env.NODE_ENV === 'production'
-    ? 'http://localhost:2001'
+    ? 'http://www.linbenjian.work'
     : 'http://localhost:1001'
 
 const getArticleList = params => {
