@@ -1,26 +1,28 @@
 <template>
   <div class="g-nav">
-    <el-row
-      type="flex"
-      class="g-navbar"
-      justify="center">
-      <el-col
-        :span="21"
-        :offset="2">
-        <nuxt-link
-          :to="{name:'index'}"
-          class="logo">lambert</nuxt-link>
+    <el-row type="flex" class="g-navbar" justify="center">
+      <el-col :span="21" :offset="2">
+        <nuxt-link :to="{name:'index'}" class="logo">林本剑的个人博客</nuxt-link>
         <el-menu
           :default-active="active"
           class="el-menu-demo tab"
           active-text-color="#23282d"
           text-color="#fff"
           mode="horizontal"
-          @select="handleSelect">
-          <el-menu-item index="index"><span>首页</span></el-menu-item>
-          <el-menu-item index="IT"><span>技术分享</span></el-menu-item>
-          <el-menu-item index="life"><span>生活点滴</span></el-menu-item>
-          <el-menu-item index="about"><span>关于</span></el-menu-item>
+          @select="handleSelect"
+        >
+          <el-menu-item index="index">
+            <span>首页</span>
+          </el-menu-item>
+          <el-menu-item index="IT">
+            <span>技术分享</span>
+          </el-menu-item>
+          <el-menu-item index="life">
+            <span>生活点滴</span>
+          </el-menu-item>
+          <el-menu-item index="about">
+            <span>关于</span>
+          </el-menu-item>
         </el-menu>
       </el-col>
     </el-row>

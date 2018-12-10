@@ -2,17 +2,10 @@
   <div>
     <Navbar :active="active"/>
     <el-row class="main">
-      <el-col
-        :span="11"
-        :offset="5">
-        <Table
-          :pagesize = "pagesize"
-          :list = "list"
-          :count = "count"/>
+      <el-col :span="11" :offset="5">
+        <Table :pagesize="pagesize" :list="list" :count="count"/>
       </el-col>
-      <el-col
-        :offset="2"
-        :span="4" >
+      <el-col :offset="2" :span="4">
         <Push/>
       </el-col>
     </el-row>
@@ -49,7 +42,7 @@ export default {
   },
   head() {
     return {
-      title: 'linbenjian的个人博客,基于nuxt构建',
+      title: '林本剑的个人博客,基于nuxt构建',
       meta: [
         {
           hid: 'description',

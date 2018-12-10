@@ -14,11 +14,9 @@
       <nuxt-link
         v-for="item in newList"
         :key="item.id"
-        :to="{name:'article-detail-id',params:{id:item.id}}">
-        <li
-          class="item">
-          {{ item.title }}
-        </li>
+        :to="{name:'article-detail-id',params:{id:item.id}}"
+      >
+        <li class="item">{{ item.title }}</li>
       </nuxt-link>
     </ul>
     <p class="title">热门文章</p>
@@ -26,30 +24,15 @@
       <nuxt-link
         v-for="item in hotList"
         :key="item.id"
-        :to="{name:'article-detail-id',params:{id:item.id}}">
-        <li
-          class="item">
-          {{ item.title }}
-        </li>
+        :to="{name:'article-detail-id',params:{id:item.id}}"
+      >
+        <li class="item">{{ item.title }}</li>
       </nuxt-link>
     </ul>
     <p class="title">友情链接</p>
     <div class="friends-list">
-      <a
-        class="item"
-        href="http://www.linbenjian.work">
-        林本剑的个人博客
-      </a>
-      <a
-        class="item"
-        href="http://www.wangyi.com">
-        网易新闻客户端
-      </a>
-      <a
-        class="item"
-        href="http://www.baidu.com">
-        百度
-      </a>
+      <a class="item" href="http://www.linbenjian.work">林本剑的个人博客</a>
+      <a class="item" href="https://github.com/LambertLin888?tab=repositories">github</a>
     </div>
   </div>
 </template>
