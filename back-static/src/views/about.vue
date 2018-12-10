@@ -1,141 +1,41 @@
 <template>
-  <div class="g-article-list">
-    <FilterForm v-on:filter-submit="filterSubmit" />
-    <el-row type="flex" justify="center" class="content-blog">
-      <el-col :span="20">
-        <el-table :data="listData.list">
-          <el-table-column
-            prop="title"
-            header-align="center"
-            label="标题"
-            width="220"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="createTime"
-            align="center"
-            label="创建时间"
-            width="160"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="readingCount"
-            align="center"
-            label="阅读数"
-            width="100"
-          >
-          </el-table-column>
-
-          <el-table-column
-            prop="publish"
-            align="center"
-            label="是否公开"
-            width="110"
-          >
-          </el-table-column>
-
-          <el-table-column
-            prop="category"
-            align="center"
-            label="类别"
-            width="190"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="des"
-            header-align="center"
-            label="概述"
-            width="200"
-            :show-overflow-tooltip="true"
-          >
-          </el-table-column>
-          <el-table-column
-            align="center"
-            fixed="right"
-            label="操作"
-            width="100"
-          >
-            <template slot-scope="scope">
-              <el-button
-                @click="goDetailHandle(scope.row.id)"
-                type="text"
-                size="small"
-                >查看</el-button
-              >
-              <el-button
-                @click="editorHandle(scope.row.id)"
-                type="text"
-                size="small"
-                >编辑</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
-        <el-Pagination
-          :page-size="9"
-          :total="listData.count"
-          class="pagination"
-          background
-          layout="prev, pager, next"
-          :current-page.sync="listData.current_page"
-          @current-change="getData"
-        />
+  <div class="about">
+    <el-row>
+      <el-col :span="10" :offset="7">
+        <div class="main">
+          <p>这是一套全栈使用js搭建的个人博客。</p>
+          <!--
+            <p>引用前辈的一句话：“面对技术的高速发展和百花齐放，有时也感到疲倦烦躁。但是，每当看到它们带来的生产力的飞跃，让你一个人快速搞定前后端的全部开发时，就觉得这终究还是一条正确的道路。”</p>
+            <p>没有什么是不变的,只有变化是永恒的,向互联网的前辈致敬!</p>
+          -->
+          <p>
+            互联网技术更新得真的很快，为了更深入的理解js全栈开发，感受js语言生态的发展，开发了这套博客系统。
+          </p>
+          <div class="content-item">
+            <p class="title">技术选型:</p>
+            <p>前端: nuxt+axios+elementUI+less+koa2+webpack</p>
+            <p>服务端: koa2+mongodb</p>
+            <p>后台: vue2+axios+elementUI+less+webpack</p>
+          </div>
+          <div class="content-item">
+            <p class="title">联系方式:</p>
+            <p>e-mail:benjianlin@foxmail.com</p>
+          </div>
+        </div>
       </el-col>
     </el-row>
-
-    <footer />
   </div>
 </template>
-
 <script>
-import { getArticleList } from '@/api.js'
-import { formatArticleContent } from '@/assets/js/utils.js'
-import FilterForm from '@/components/FilterForm.vue'
 export default {
-  components: { FilterForm },
   data() {
     return {
-      active: 'article-list',
-      listData: {
-        list: [],
-        count: 0,
-        current_page: 0
-      },
-      filterRules: {}
-    }
-  },
-  mounted() {
-    this.getData()
-  },
-  methods: {
-    filterSubmit(params) {
-      this.listData.current_page = 0
-      this.filterRules = params
-      this.getData()
-    },
-    getData(page = 1) {
-      getArticleList({
-        params: {
-          page,
-          pagesize: 7,
-          ...this.filterRules
-        }
-      }).then(res => {
-        let { count, list } = res.data
-        this.listData.list = formatArticleContent(list)
-        this.listData.count = count
-      })
-    },
-    goDetailHandle(id) {
-      this.$router.push({ name: 'detail', params: { id } })
-    },
-    editorHandle(id) {
-      this.$router.push({ name: 'editor', params: { id } })
+      active: 'about'
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-@import '../assets/css/views/article-list.less';
+@import '../assets/css/views/about.less';
 </style>
