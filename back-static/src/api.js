@@ -1,14 +1,5 @@
 import axios from 'axios'
-var NODE_ENV = process.env.NODE_ENV
-let baseurl = 'http://localhost:9001'
-switch (NODE_ENV) {
-  case 'production':
-    baseurl = 'http://back.linbenjian.work'
-    break
-}
-if (process.env.outputDir == 'stage') {
-  baseurl = 'http://backtest.linbenjian.work'
-}
+let baseurl = process.env.VUE_APP_BASE_URL || 'http://localhost:9001'
 axios.interceptors.request.use(
   config => {
     // Do something before request is sent
