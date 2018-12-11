@@ -4,27 +4,15 @@
       <el-col :span="8">
         <div class="demo-input-suffix">
           <span>标题</span>
-          <el-input
-            placeholder="请输入文章标题"
-            maxlength="20"
-            v-model="detail.title"
-            class="input-title"
-          >
-          </el-input>
+          <el-input placeholder="请输入文章标题" maxlength="40" v-model="detail.title" class="input-title"></el-input>
         </div>
       </el-col>
       <el-col :span="5">
-        <div class="demo-input-suffix">
-          类别
-          <el-cascader
-            :options="categoryList"
-            v-model="detail.category"
-            :change-on-select="true"
-          ></el-cascader>
+        <div class="demo-input-suffix">类别
+          <el-cascader :options="categoryList" v-model="detail.category" :change-on-select="true"></el-cascader>
         </div>
       </el-col>
-      <el-col :span="8">
-        是否公开 &nbsp;
+      <el-col :span="8">是否公开 &nbsp;
         <el-radio v-model="detail.publish" label="1">是</el-radio>
         <el-radio v-model="detail.publish" label="0">否</el-radio>
       </el-col>
@@ -35,9 +23,7 @@
           @click="
             showConfirm('此操作将会覆盖原来的内容，是否继续？', submitHandle)
           "
-        >
-          发布
-        </el-button>
+        >发布</el-button>
         <el-button
           v-if="!initArticle"
           span="1"
@@ -45,19 +31,12 @@
           @click="
             showConfirm('此操作将会永久删除当前文章，是否继续？', deleteHandle)
           "
-        >
-          删除
-        </el-button>
+        >删除</el-button>
       </el-col>
       <el-col :span="13">
         <div class="demo-input-suffix">
           <span>简介</span>
-          <el-input
-            class="input-des"
-            placeholder="请输入文章description(for SEO)"
-            v-model="detail.des"
-          >
-          </el-input>
+          <el-input class="input-des" placeholder="请输入文章description(for SEO)" v-model="detail.des"></el-input>
         </div>
       </el-col>
       <el-col :span="9">
@@ -67,8 +46,7 @@
             class="input-des"
             placeholder="请输入文章keywords(用半角逗号隔开)"
             v-model="detail.keywords"
-          >
-          </el-input>
+          ></el-input>
         </div>
       </el-col>
     </el-Row>
