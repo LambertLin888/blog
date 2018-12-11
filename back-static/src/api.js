@@ -5,9 +5,9 @@ switch (NODE_ENV) {
   case 'production':
     baseurl = 'http://back.linbenjian.work'
     break
-  case 'test':
-    baseurl = 'http://backtest.linbenjian.work'
-    break
+}
+if (process.env.outputDir == 'stage') {
+  baseurl = 'http://backtest.linbenjian.work'
 }
 axios.interceptors.request.use(
   config => {
