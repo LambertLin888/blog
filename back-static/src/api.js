@@ -1,6 +1,5 @@
 import axios from 'axios'
-let baseurl = process.env.VUE_BASE_URL || 'http://localhost:9001'
-
+let baseurl = process.env.VUE_APP_BASE_URL || 'http://localhost:9001'
 axios.interceptors.request.use(
   config => {
     // Do something before request is sent
