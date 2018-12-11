@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "e73a0647198cfe970de0f003be95cc51",
-    "url": "/fonts/fontello.e73a0647.eot"
+    "revision": "8d4a4e6f7431d0d7fa92b1df20f38161",
+    "url": "/fonts/fontello.8d4a4e6f.woff2"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
@@ -16,20 +16,20 @@ self.__precacheManifest = [
     "url": "/css/chunk-vendors.67d67968.css"
   },
   {
-    "revision": "6f0a76321d30f3c8120915e57f7bd77e",
-    "url": "/fonts/element-icons.6f0a7632.ttf"
-  },
-  {
     "revision": "2fad952a20fbbcfd1bf2ebb210dccf7a",
     "url": "/fonts/element-icons.2fad952a.woff"
   },
   {
-    "revision": "8d4a4e6f7431d0d7fa92b1df20f38161",
-    "url": "/fonts/fontello.8d4a4e6f.woff2"
+    "revision": "6f0a76321d30f3c8120915e57f7bd77e",
+    "url": "/fonts/element-icons.6f0a7632.ttf"
   },
   {
-    "revision": "1c75203a086a5f502820",
-    "url": "/js/app.ee5c44cc.js"
+    "revision": "e73a0647198cfe970de0f003be95cc51",
+    "url": "/fonts/fontello.e73a0647.eot"
+  },
+  {
+    "revision": "82c626927cfb08061119",
+    "url": "/js/app.cbdcffaa.js"
   },
   {
     "revision": "ab15bfe0ef640408f3e3",
@@ -48,11 +48,11 @@ self.__precacheManifest = [
     "url": "/img/icon-type.6c6339f9.svg"
   },
   {
-    "revision": "1222c4fc3fdc4d23f5ff9084d5ee7917",
+    "revision": "bcec936c6c2d7e476359420cebefedc2",
     "url": "/index.html"
   },
   {
-    "revision": "1c75203a086a5f502820",
+    "revision": "82c626927cfb08061119",
     "url": "/css/app.7aac4224.css"
   }
 ];
