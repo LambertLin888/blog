@@ -6,7 +6,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 林本剑的个人博客,
+    title: '林本剑的个人博客',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
