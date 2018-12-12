@@ -125,7 +125,7 @@ export async function setContext(app, context) {
       payload: context.payload,
       error: context.error,
       base: '/',
-      env: {}
+      env: {"baseUrl":"http://localhost:8001","BASE_URL":"http://www.linbenjian.work"}
     }
     // Only set once
     if (context.req) app.context.req = context.req
