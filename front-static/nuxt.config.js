@@ -6,7 +6,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: '林本剑的个人博客',
+    title: "lambert's blog",
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -14,7 +14,7 @@ module.exports = {
       {
         hid: 'keywords',
         name: 'keywords',
-        content: '林本剑,博客,前端,linbenjian,blog'
+        content: 'linbenjian,博客,前端,blog'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]

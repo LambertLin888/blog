@@ -42,17 +42,17 @@ export default {
   },
   head() {
     return {
-      title: '林本剑的个人博客,基于nuxt构建',
+      title: "lambert's blog,基于nuxt构建",
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: '林本剑的个人博客, 基于技术,分享日常积累的前端技术'
+          content: "lambert's blog, 基于技术,分享日常积累的前端技术"
         },
         {
           hid: 'keywords',
           name: 'keywords',
-          content: '林本剑,linbenjian,前端,个人博客,nuxt,dev-tool'
+          content: 'lambert,linbenjian,前端,个人博客,nuxt,dev-tool'
         },
         { hid: 'author', content: 'linbenjian' }
       ]
