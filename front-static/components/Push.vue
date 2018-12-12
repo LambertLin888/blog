@@ -6,7 +6,7 @@
         class="face"
         src="https://himg.bdimg.com/sys/portrait/item/e1ace7bd91e99985e9a39ee4bea0e6ada3e789889b28.jpg"
       >
-      <p class="name">林本剑</p>
+      <p class="name">lambert</p>
       <p class="des">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前端攻城狮一枚, 目前专注于js全栈开发</p>
     </div>
     <p class="title">最新文章</p>
@@ -31,7 +31,7 @@
     </ul>
     <p class="title">友情链接</p>
     <div class="friends-list">
-      <a class="item" href="http://www.linbenjian.work">林本剑的个人博客</a>
+      <a class="item" href="http://www.linbenjian.work">lambert's blog</a>
       <a class="item" href="https://github.com/LambertLin888?tab=repositories">github</a>
     </div>
   </div>
