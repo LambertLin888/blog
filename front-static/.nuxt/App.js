@@ -11,7 +11,7 @@ const layouts = { "_default": _6f6c098b }
 
 
 export default {
-  head: {"title":"林本剑的个人博客","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"linbenjian&#39;s blog"},{"hid":"keywords","name":"keywords","content":"林本剑,博客,前端,linbenjian,blog"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
+  head: {"title":"lambert's blog","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"linbenjian&#39;s blog"},{"hid":"keywords","name":"keywords","content":"linbenjian,博客,前端,blog"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
   render(h, props) {
     const loadingEl = h('nuxt-loading', { ref: 'loading' })
     const layoutEl = h(this.layout || 'nuxt')
