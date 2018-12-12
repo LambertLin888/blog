@@ -41,14 +41,14 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: `简介、林本剑的博客、博客`
+          content: `简介、linbenjian's blog、博客`
         },
         {
           hid: 'keywords',
           name: 'keywords',
-          content: `简介、林本剑的博客、博客`
+          content: `简介、linbenjian's blog、博客`
         },
-        { hid: 'author', content: '林本剑' }
+        { hid: 'author', content: 'lambert' }
       ]
     }
   }

@@ -17,25 +17,69 @@
           },
           {
             "value": "html",
-            "label": "html"
+            "label": "Html"
+          },
+          {
+            "value": "vue",
+            "label": "Vue"
+          },
+          {
+            "value": "react",
+            "label": "React"
+          },
+          {
+            "value": "new",
+            "label": "技术前沿"
+          },
+          {
+            "value": "bug",
+            "label": "Bug"
+          },
+          {
+            "value": "audits",
+            "label": "优化"
+          },
+          {
+            "value": "case",
+            "label": "解决方案"
+          },
+          {
+            "value": "other",
+            "label": "其他"
           }
         ]
       },
       {
         "value": "back",
-        "label": "后台",
+        "label": "后端",
         "children": [
           {
-            "value": "nginx",
-            "label": "nginx"
+            "value": "node",
+            "label": "Node.js"
           },
           {
-            "value": "databook",
-            "label": "数据库"
+            "value": "java",
+            "label": "Java"
           },
           {
-            "value": "security",
-            "label": "数据安全"
+            "value": "new",
+            "label": "技术前沿"
+          },
+          {
+            "value": "bug",
+            "label": "Bug"
+          },
+          {
+            "value": "audits",
+            "label": "优化"
+          },
+          {
+            "value": "case",
+            "label": "解决方案"
+          },
+          {
+            "value": "other",
+            "label": "其他"
           }
         ]
       },
@@ -44,14 +88,88 @@
         "label": "运维",
         "children": [
           {
+            "value": "linux",
+            "label": "Linux"
+          },
+          {
             "value": "docker",
             "label": "Docker"
           },
           {
-            "value": "linux",
-            "label": "linux"
+            "value": "nginx",
+            "label": "Nginx"
+          },
+          {
+            "value": "new",
+            "label": "技术前沿"
+          },
+          {
+            "value": "bug",
+            "label": "Bug"
+          },
+          {
+            "value": "audits",
+            "label": "优化"
+          },
+          {
+            "value": "case",
+            "label": "解决方案"
+          },
+          {
+            "value": "other",
+            "label": "其他"
           }
         ]
+      },
+      {
+        "value": "db",
+        "label": "数据库",
+        "children": [
+          {
+            "value": "mongodb",
+            "label": "MongoDB"
+          },
+          {
+            "value": "redis",
+            "label": "Redis"
+          },
+          {
+            "value": "sql",
+            "label": "SQL"
+          },
+          {
+            "value": "new",
+            "label": "技术前沿"
+          },
+          {
+            "value": "security",
+            "label": "数据安全"
+          },
+          {
+            "value": "bug",
+            "label": "Bug"
+          },
+          {
+            "value": "audits",
+            "label": "优化"
+          },
+          {
+            "value": "case",
+            "label": "解决方案"
+          },
+          {
+            "value": "other",
+            "label": "其他"
+          }
+        ]
+      },
+      {
+        "value": "new",
+        "label": "技术前沿"
+      },
+      {
+        "value": "other",
+        "label": "其他"
       }
     ]
   },
@@ -72,8 +190,12 @@
             "label": "音乐"
           },
           {
-            "value": "shopping",
-            "label": "购物"
+            "value": "teach",
+            "label": "教育"
+          },
+          {
+            "value": "other",
+            "label": "其他"
           }
         ]
       },
@@ -82,14 +204,56 @@
         "label": "能力提升",
         "children": [
           {
-            "value": "training",
-            "label": "培训"
+            "value": "reading",
+            "label": "阅读"
           },
           {
             "value": "zhaoping",
             "label": "招聘"
+          },
+          {
+            "value": "teach",
+            "label": "培训"
+          },
+          {
+            "value": "licai",
+            "label": "理财"
+          },
+          {
+            "value": "other",
+            "label": "其他"
           }
         ]
+      },
+      {
+        "value": "rizhi",
+        "label": "日志",
+        "children": [
+          {
+            "value": "weather",
+            "label": "天气"
+          },
+          {
+            "value": "play",
+            "label": "游玩"
+          },
+          {
+            "value": "jianshen",
+            "label": "健身"
+          },
+          {
+            "value": "xinqing",
+            "label": "心情"
+          },
+          {
+            "value": "other",
+            "label": "其他"
+          }
+        ]
+      },
+      {
+        "value": "other",
+        "label": "其他"
       }
     ]
   },
@@ -108,6 +272,10 @@
           {
             "value": "shishi",
             "label": "实事"
+          },
+          {
+            "value": "other",
+            "label": "其他"
           }
         ]
       },
@@ -122,8 +290,16 @@
           {
             "value": "zhaichao",
             "label": "摘抄"
+          },
+          {
+            "value": "other",
+            "label": "其他"
           }
         ]
+      },
+      {
+        "value": "other",
+        "label": "其他"
       }
     ]
   },

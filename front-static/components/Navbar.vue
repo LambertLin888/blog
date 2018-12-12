@@ -2,7 +2,7 @@
   <div class="g-nav">
     <el-row type="flex" class="g-navbar" justify="center">
       <el-col :span="21" :offset="2">
-        <nuxt-link :to="{name:'index'}" class="logo">lambert</nuxt-link>
+        <nuxt-link :to="{name:'index'}" class="logo">LAMBERT'S BLOG</nuxt-link>
         <el-menu
           :default-active="active"
           class="el-menu-demo tab"
