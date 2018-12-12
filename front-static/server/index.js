@@ -6,9 +6,9 @@ const { Nuxt, Builder } = require('nuxt')
 const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 let port = process.env.PORT || 8001
+let mode = process.env.MODE || ''
 let serverHost = 'http://127.0.0.1:9001'
-let isProduction = false
-if (process.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV == 'production' && mode !== 'test') {
   port = 8002
   serverHost = 'http://127.0.0.1:9002'
   isProduction = true
