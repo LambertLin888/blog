@@ -5,6 +5,9 @@
   "main": "/front-static/dist/index.html",
   "scripts": {
     "postinstall": "cd back-static && npm install && cd ../front-static && npm install && cd ../server && npm install",
+    "dev-back": "cd back-static && npm run serve",
+    "dev-front": "cd front-static && npm run dev",
+    "dev-server": "cd server && npm run start",
     "build-test-back": "cd back-static && npm run build-test",
     "start-test-front": "cd front-static && npm run build-test && npm run start-test",
     "start-test-server": "cd server && npm run start-test",
