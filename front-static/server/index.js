@@ -7,20 +7,12 @@ const app = new Koa()
 const host = process.env.HOST || '127.0.0.1'
 let port = process.env.PORT || 8001
 let serverHost = 'http://127.0.0.1:9001'
-let isProduction = false
-if (process.env.NODE_ENV == 'production') {
-  port = 8002
-  serverHost = 'http://127.0.0.1:9002'
-  isProduction = true
-}
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
 config.dev = !(app.env === 'production')
 async function start() {
-  // Instantiate nuxt.js
   const nuxt = new Nuxt(config)
-
   // Build in development
   if (config.dev) {
     const builder = new Builder(nuxt)

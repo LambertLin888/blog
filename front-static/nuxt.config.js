@@ -59,6 +59,12 @@ module.exports = {
   /*
   **
   */
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:8001'
+  },
+  /*
+  **
+  */
   dev: process.env.NODE_ENV !== 'production',
   /*
   ** Build configuration
