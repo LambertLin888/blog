@@ -1,15 +1,15 @@
 self.__precacheManifest = [
   {
-    "revision": "e73a0647198cfe970de0f003be95cc51",
-    "url": "/fonts/fontello.e73a0647.eot"
+    "revision": "8d4a4e6f7431d0d7fa92b1df20f38161",
+    "url": "/fonts/fontello.8d4a4e6f.woff2"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
     "url": "/robots.txt"
   },
   {
-    "revision": "a782baa8633b1359f9686ffad17e0d76",
-    "url": "/fonts/fontello.a782baa8.woff"
+    "revision": "e73a0647198cfe970de0f003be95cc51",
+    "url": "/fonts/fontello.e73a0647.eot"
   },
   {
     "revision": "ab15bfe0ef640408f3e3",
@@ -24,12 +24,12 @@ self.__precacheManifest = [
     "url": "/fonts/element-icons.6f0a7632.ttf"
   },
   {
-    "revision": "8d4a4e6f7431d0d7fa92b1df20f38161",
-    "url": "/fonts/fontello.8d4a4e6f.woff2"
+    "revision": "a782baa8633b1359f9686ffad17e0d76",
+    "url": "/fonts/fontello.a782baa8.woff"
   },
   {
-    "revision": "d4cbe1b86ec2a3d5b62f",
-    "url": "/js/app.786c03d2.js"
+    "revision": "9a09277cb222e956c8d7",
+    "url": "/js/app.36e7f7c8.js"
   },
   {
     "revision": "ab15bfe0ef640408f3e3",
@@ -48,11 +48,11 @@ self.__precacheManifest = [
     "url": "/img/icon-type.6c6339f9.svg"
   },
   {
-    "revision": "4682b33ea9803cacc0ea7d03d99d1290",
+    "revision": "fba6acd557352bb7e86095731c44affa",
     "url": "/index.html"
   },
   {
-    "revision": "d4cbe1b86ec2a3d5b62f",
+    "revision": "9a09277cb222e956c8d7",
     "url": "/css/app.5441c72c.css"
   }
 ];
