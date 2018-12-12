@@ -1,9 +1,11 @@
 import axios from 'axios'
-let baseurl =
-  process.env.NODE_ENV === 'production'
-    ? 'http://www.linbenjian.work'
-    : 'http://127.0.0.1:8001'
-
+let baseurl = 'http://127.0.0.1:8001'
+if (process.env.NODE_ENV === 'production') {
+  baseurl = 'http://www.linbenjian.work'
+  if (process.env.MODE === 'test') {
+    baseurl = 'http://test.linbenjian.work'
+  }
+}
 const getArticleList = params => {
   return axios.get(`${baseurl}/api/article/getArticleList`, params)
 }
