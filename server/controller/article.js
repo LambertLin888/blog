@@ -109,7 +109,7 @@ let getArticleList = async ctx => {
       if (platform != "back") {
         item.originalContent =
           (originalContent &&
-            originalContent.replace(/<\/?.+?\/?>/g, "").slice(1, 65)) +
+            originalContent.replace(/<\/?.+?\/?>/g, "").slice(0, 65)) +
             " ..." || null;
         let matchs = originalContent.match(
           /https?:\/\/(.+)\.(png|jpg|gif|bmp|jpeg)/
