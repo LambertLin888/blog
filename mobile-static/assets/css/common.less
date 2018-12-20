@@ -9,7 +9,7 @@
 @globalBgColor: #1c2327;
 html,
 body {
-  min-width: 1200px;
+  width: 100%;
   height: 100%;
   min-height: 100%;
 }
@@ -88,4 +88,72 @@ img {
   height: 0;
   clear: both;
   visibility: hidden;
+}
+.ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+  overflow: hidden;
+}
+.g-iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 0.16rem;
+  font-style: normal;
+  color: #aaa;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mint-header {
+  background-color: @globalColor;
+}
+.mint-button:not(.is-disabled):active::after {
+  opacity: 0.2; /* .6 */
+}
+.mint-button--primary {
+  background-color: @globalColor;
+}
+.mint-button--primary.is-plain {
+  border: 1px solid @globalColor;
+  color: @globalColor;
+}
+.mint-badge.is-primary {
+  background-color: @globalColor;
+}
+.mint-switch-input:checked + .mint-switch-core {
+  border-color: @globalColor;
+  background-color: @globalColor;
+}
+.mint-navbar .mint-tab-item.is-selected {
+  border-bottom: 3px solid @globalColor;
+  color: @globalColor;
+}
+.mint-tabbar > .mint-tab-item.is-selected {
+  color: @globalColor;
+}
+.mint-searchbar-cancel {
+  color: @globalColor;
+}
+.mint-checkbox-input:checked + .mint-checkbox-core {
+  background-color: @globalColor;
+  border-color: @globalColor;
+}
+.mint-radio-input:checked + .mint-radio-core {
+  background-color: @globalColor;
+  border-color: @globalColor;
+}
+.mt-range-progress {
+  background-color: @globalColor;
+}
+.mt-progress-progress {
+  background-color: @globalColor;
+}
+.mint-msgbox-confirm {
+  color: @globalColor;
+}
+.mint-msgbox-confirm:active {
+  color: @globalColor;
+}
+.mint-datetime-action {
+  color: @globalColor;
 }

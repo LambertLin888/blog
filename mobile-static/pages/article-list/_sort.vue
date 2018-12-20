@@ -1,44 +1,34 @@
 <template>
   <div class="g-article-category">
-    <Navbar :active="active"/>
-    <el-row class="main">
-      <el-col :span="11" :offset="5">
-        <Table :category="category" :pagesize="pagesize" :list="list" :count="count"/>
-      </el-col>
-      <el-col :offset="2" :span="4">
-        <Push/>
-      </el-col>
-    </el-row>
-    <Footer/>
+    <div class="main">
+      <Table :category="category" :pagesize="pagesize" :list="list" :count="count"/>
+    </div>
+    <Tabbar :active="active"/>
   </div>
 </template>
 
 <script>
-import Navbar from '~/components/Navbar.vue'
-import Footer from '~/components/Footer.vue'
+import Tabbar from '~/components/Tabbar.vue'
 import Table from '~/components/Table.vue'
-import Push from '~/components/Push.vue'
 import { getArticleList } from '~/plugins/api.js'
 import { formatArticleContent } from '~/assets/js/utils.js'
 
 export default {
   components: {
-    Navbar,
-    Footer,
-    Table,
-    Push
+    Tabbar,
+    Table
   },
   data() {
-    const active = this.$route.params.category || 'index'
-    const category = this.$route.params.category || ''
+    const active = this.$route.params.sort || ''
+    const sort = this.$route.params.sort || ''
     return {
       active,
-      category
+      sort
     }
   },
   async asyncData({ app, params }) {
     let pagesize = 7
-    let options = { page: 1, pagesize, category: params.category }
+    let options = { page: 1, pagesize, sort: '-' + params.sort }
     let { data } = await getArticleList({ params: options })
     let { list, count } = data
     list = formatArticleContent(list)

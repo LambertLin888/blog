@@ -1,32 +1,20 @@
 
 <template>
-  <div>
-    <Navbar :active="active"/>
-    <el-row class="main">
-      <el-col :span="11" :offset="5">
-        <Table :pagesize="pagesize" :list="list" :count="count"/>
-      </el-col>
-      <el-col :offset="2" :span="4">
-        <Push/>
-      </el-col>
-    </el-row>
-    <Footer/>
+  <div class="main">
+    <Table :pagesize="pagesize" :list="list" :count="count"/>
+    <Tabbar :active="active"/>
   </div>
 </template>
 
 <script>
 import Table from '~/components/Table.vue'
-import Navbar from '~/components/Navbar.vue'
-import Footer from '~/components/Footer.vue'
-import Push from '~/components/Push.vue'
+import Tabbar from '~/components/Tabbar.vue'
 import { getArticleList } from '~/plugins/api.js'
 import { formatArticleContent } from '~/assets/js/utils.js'
 export default {
   components: {
-    Navbar,
-    Footer,
     Table,
-    Push
+    Tabbar
   },
   data() {
     return {

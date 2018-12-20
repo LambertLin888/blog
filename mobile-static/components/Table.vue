@@ -1,37 +1,27 @@
 <template>
-  <div class="g-com-table">
-    <ul>
-      <li v-for="item in articleList" :key="item.id" class="item">
+  <ul class="g-com-table">
+    <li v-for="item in articleList" :key="item.id" class="item">
+      <nuxt-link :to="{name:'article-detail-id',params:{id:item.id}}">
         <div :class="!item.thumb?'content hike-content':'content'">
-          <nuxt-link :to="{name:'article-detail-id',params:{id:item.id}}">
-            <span class="title">{{ item.title }}</span>
-          </nuxt-link>
-          <p class="des">{{ item.originalContent }}</p>
+          <span class="title">{{ item.title }}</span>
+          <p class="des ellipsis">{{ item.originalContent }}</p>
           <div class="meta">
-            <span>
+            <!-- <span>
               &nbsp;
               <i class="el-icon-date"/>
               &nbsp;{{ item.createTime }}
-            </span>
+            </span>-->
             <span>
-              &nbsp;
               <i class="el-icon-view"/>
-              &nbsp;浏览({{ item.readingCount }})&nbsp;
+              浏览({{ item.readingCount }})&nbsp;
             </span>
             <span class="icon-type">&nbsp;{{ item.category }}</span>
           </div>
         </div>
-        <nuxt-link
-          v-if="item.thumb"
-          :to="{name:'article-detail-id',params:{id:item.id}}"
-          class="wrap-img"
-        >
-          <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="120">
-        </nuxt-link>
-      </li>
-    </ul>
-    <el-button v-show="showBtnMore" type="primary" class="btn-more" round @click="getData()">加载更多</el-button>
-  </div>
+        <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="120">
+      </nuxt-link>
+    </li>
+  </ul>
 </template>
 
 <script>

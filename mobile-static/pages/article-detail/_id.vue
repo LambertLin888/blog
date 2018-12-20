@@ -1,51 +1,43 @@
 
 <template>
   <div class="g-detail">
-    <Navbar/>
-    <el-row >
-      <el-col
-        :span="10"
-        :offset="7">
-        <h1 class="title">
-          <span>{{ title }}</span>
-        </h1>
-        <el-row class="tips">
-          <el-col>
-            <div class="meta">
-              <span>&nbsp;<i class="el-icon-date"/>&nbsp;{{ createTime }}</span>
-              <span>&nbsp;<i class="el-icon-view"/>&nbsp;浏览({{ readingCount }})&nbsp;</span>
-              <span class="icon-type">&nbsp;{{ category }}</span>
-            </div>
-          </el-col>
-        </el-row>
-        <div
-          class= "html-content"
-          v-html="originalContent" />
-      </el-col>
-      <el-col
-        :offset="1"
-        :span="4" >
-        <Push/>
-      </el-col>
-    </el-row>
-    <Footer/>
+    <Header :title="title" :path="path" :toName="toName"/>
+    <h1 class="title">
+      <span>{{ title }}</span>
+    </h1>
+    <div class="tips">
+      <div class="meta">
+        <span>
+          &nbsp;
+          <i class="el-icon-date"/>
+          &nbsp;{{ createTime }}
+        </span>
+        <span>
+          &nbsp;
+          <i class="el-icon-view"/>
+          &nbsp;浏览({{ readingCount }})&nbsp;
+        </span>
+        <span class="icon-type">&nbsp;{{ category }}</span>
+      </div>
+    </div>
+    <div class="html-content" v-html="originalContent"/>
   </div>
 </template>
-
-
 <script>
-import Navbar from '~/components/Navbar.vue'
-import Footer from '~/components/Footer.vue'
-import Push from '~/components/Push.vue'
+import Header from '~/components/Header.vue'
 import { getArticleDetail } from '~/plugins/api.js'
 import { formatArticleContent } from '~/assets/js/utils.js'
 export default {
   components: {
-    Navbar,
-    Footer,
-    Push
+    Header
   },
-  data() {},
+  data() {
+    return {
+      title: '文章详情',
+      path: '',
+      toName: '返回'
+    }
+  },
   async asyncData({ app, params }) {
     let result = await getArticleDetail({ params: { id: params.id } })
     let { status, data } = result.data

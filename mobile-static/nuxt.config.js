@@ -8,8 +8,12 @@ module.exports = {
   head: {
     title: "lambert's blog",
     meta: [
+      {
+        name: 'viewport',
+        content:
+          'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no'
+      },
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description },
       {
         hid: 'keywords',
@@ -17,7 +21,14 @@ module.exports = {
         content: 'linbenjian,博客,前端,blog'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      {
+        rel: 'styleshert',
+        href: 'http://at.alicdn.com/t/font_976502_yo7yecib2zi.css'
+      }
+    ],
+    script: [{ src: '/rem.js' }]
   },
   /*
   ** Customize the progress-bar color
@@ -26,12 +37,12 @@ module.exports = {
   /*
   ** Global CSS
   */
-  css: ['element-ui/lib/theme-chalk/index.css'],
+  css: ['mint-ui/lib/style.css'],
 
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/element-ui'],
+  plugins: ['@/plugins/mint-ui'],
 
   /*
   ** loader
