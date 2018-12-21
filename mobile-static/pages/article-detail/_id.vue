@@ -1,7 +1,7 @@
 
 <template>
   <div class="g-detail">
-    <Header :title="title" :path="path" :toName="toName"/>
+    <!-- <Header :title="title" :path="path" :toName="toName"/> -->
     <h1 class="title">
       <span>{{ title }}</span>
     </h1>
@@ -21,15 +21,20 @@
       </div>
     </div>
     <div class="html-content" v-html="originalContent"/>
+    <nuxt-link to="/">
+      <div class="back-index">
+        <span>回到博客首页</span>
+      </div>
+    </nuxt-link>
   </div>
 </template>
 <script>
-import Header from '~/components/Header.vue'
+// import Header from '~/components/Header.vue'
 import { getArticleDetail } from '~/plugins/api.js'
 import { formatArticleContent } from '~/assets/js/utils.js'
 export default {
   components: {
-    Header
+    // Header
   },
   data() {
     return {

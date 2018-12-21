@@ -4,11 +4,16 @@
     :top-method="refresh"
     :bottom-method="loadMore"
     :bottom-all-loaded="allLoaded"
+    :bottom-distance="0"
   >
     <ul>
       <ul class="g-com-table">
-        <li v-for="item in articleList" :key="item.id" class="item">
-          <nuxt-link :to="{name:'article-detail-id',params:{id:item.id}}">
+        <nuxt-link
+          v-for="item in articleList"
+          :key="item.id"
+          :to="{name:'article-detail-id',params:{id:item.id}}"
+        >
+          <li class="item">
             <div :class="!item.thumb?'content hike-content':'content'">
               <span class="title">{{ item.title }}</span>
               <p class="des ellipsis">{{ item.originalContent }}</p>
@@ -26,8 +31,8 @@
               </div>
             </div>
             <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="120">
-          </nuxt-link>
-        </li>
+          </li>
+        </nuxt-link>
       </ul>
     </ul>
   </mt-loadmore>
