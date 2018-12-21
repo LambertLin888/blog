@@ -76,3 +76,6 @@ typings/
 
 # IDE
 .idea
+
+#upload images
+upload-img.sh
