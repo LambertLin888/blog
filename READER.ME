@@ -34,6 +34,8 @@ npm run  build-test-back
 ### 编译启动test环境前端 port(8001)
 npm run start-test-front
 
+### 编译启动test环境手机端 port(8011)
+npm run start-test-mobile
 
 ### 编译启动test环境服务端 port(9001)
 npm run start-test-server
@@ -49,6 +51,9 @@ npm run  build-prod-back
 ### 编译启动prod环境前端 port(8002)
 npm run start-prod-front
 
+### 编译启动prod环境手机端 port(8012)
+npm run start-prod-mobile
+
 ### 编译启动prod环境服务端 port(9002)
 npm run start-prod-server
 
@@ -58,7 +63,9 @@ npm run start-prod-server
 
 --back-static   #后端 此为博客编辑静态页面  技术选型为: vue2+axios+elementUI+less+webpack
 
---front-static  #前端(C端) 此为博客展示页面  技术选型为: vue2+axios+elementUI+less+webpack
+--front-static  #前端(PC端) 此为博客展示页面  技术选型为: vue2+axios+elementUI+less+webpack
+
+--front-static  #前端(移动端) 此为博客展示页面  技术选型为: vue2+axios+mintUI+less+webpack
 
 --server        #服务端 此为博客的服务器  技术选型为：koa2+mongodb
 
@@ -89,6 +96,18 @@ npm run start-prod-server
 
     sh upload-img.sh <filename>
 
+#####################################################################
+## pm2  
+#test
+
+pm2 start npm --watch --name test-blog-front -- run start-test-front
+pm2 start npm --watch --name test-blog-mobile -- run start-test-mobile
+pm2 start npm --watch --name test-blog-server -- run start-test-server
+
+#prod
+pm2 start npm --watch --name blog-front -- run start-prod-front
+pm2 start npm --watch --name blog-mobile -- run start-prod-mobile
+pm2 start npm --watch --name blog-server -- run start-prod-server
 
 
 
