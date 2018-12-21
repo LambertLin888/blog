@@ -6,34 +6,32 @@
     :bottom-all-loaded="allLoaded"
     :bottom-distance="0"
   >
-    <ul>
-      <ul class="g-com-table">
-        <nuxt-link
-          v-for="item in articleList"
-          :key="item.id"
-          :to="{name:'article-detail-id',params:{id:item.id}}"
-        >
-          <li class="item">
-            <div :class="!item.thumb?'content hike-content':'content'">
-              <span class="title">{{ item.title }}</span>
-              <p class="des ellipsis">{{ item.originalContent }}</p>
-              <div class="meta">
-                <!-- <span>
+    <ul class="g-com-table">
+      <nuxt-link
+        v-for="item in articleList"
+        :key="item.id"
+        :to="{name:'article-detail-id',params:{id:item.id}}"
+      >
+        <li class="item">
+          <div :class="!item.thumb?'content hike-content':'content'">
+            <span class="title">{{ item.title }}</span>
+            <p class="des ellipsis">{{ item.originalContent }}</p>
+            <div class="meta">
+              <!-- <span>
               &nbsp;
               <i class="el-icon-date"/>
               &nbsp;{{ item.createTime }}
-                </span>-->
-                <span>
-                  <i class="el-icon-view"/>
-                  浏览({{ item.readingCount }})&nbsp;
-                </span>
-                <span class="icon-type">&nbsp;{{ item.category }}</span>
-              </div>
+              </span>-->
+              <span>
+                <i class="el-icon-view"/>
+                浏览({{ item.readingCount }})&nbsp;
+              </span>
+              <span class="icon-type">&nbsp;{{ item.category }}</span>
             </div>
-            <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="120">
-          </li>
-        </nuxt-link>
-      </ul>
+          </div>
+          <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="img">
+        </li>
+      </nuxt-link>
     </ul>
   </mt-loadmore>
 </template>

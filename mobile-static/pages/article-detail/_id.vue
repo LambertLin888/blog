@@ -23,7 +23,7 @@
     <div class="html-content" v-html="originalContent"/>
     <nuxt-link to="/">
       <div class="back-index">
-        <span>回到博客首页</span>
+        <span>博客主页</span>
       </div>
     </nuxt-link>
   </div>

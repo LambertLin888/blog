@@ -16,7 +16,11 @@
       border-radius: 4px;
     }
   }
-
+  a:last-child {
+    .item {
+      border-bottom: none;
+    }
+  }
   .content {
     .title {
       margin: -7px 0 4px;
@@ -87,10 +91,5 @@
     &:hover {
       background-color: #9b9b9b;
     }
-  }
-  image[lazy='loading'] {
-    width: 40px;
-    height: 300px;
-    margin: auto;
   }
 }
