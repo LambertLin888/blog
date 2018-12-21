@@ -8,4 +8,5 @@ export default () => {
   Vue.component(TabItem.name, TabItem)
   Vue.component(Button.name, Button)
   Vue.component(Loadmore.name, Loadmore)
+  // Vue.component(Lazyload)
 }
