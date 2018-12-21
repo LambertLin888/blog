@@ -1,7 +1,7 @@
 <template>
   <div class="g-article-category">
     <div class="main">
-      <Table :category="category" :pagesize="pagesize" :list="list" :count="count"/>
+      <Table :sort="sort" :pagesize="pagesize" :list="list" :count="count"/>
     </div>
     <Tabbar :active="active"/>
   </div>

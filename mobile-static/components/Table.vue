@@ -1,27 +1,36 @@
 <template>
-  <ul class="g-com-table">
-    <li v-for="item in articleList" :key="item.id" class="item">
-      <nuxt-link :to="{name:'article-detail-id',params:{id:item.id}}">
-        <div :class="!item.thumb?'content hike-content':'content'">
-          <span class="title">{{ item.title }}</span>
-          <p class="des ellipsis">{{ item.originalContent }}</p>
-          <div class="meta">
-            <!-- <span>
+  <mt-loadmore
+    ref="loadmore"
+    :top-method="refresh"
+    :bottom-method="loadMore"
+    :bottom-all-loaded="allLoaded"
+  >
+    <ul>
+      <ul class="g-com-table">
+        <li v-for="item in articleList" :key="item.id" class="item">
+          <nuxt-link :to="{name:'article-detail-id',params:{id:item.id}}">
+            <div :class="!item.thumb?'content hike-content':'content'">
+              <span class="title">{{ item.title }}</span>
+              <p class="des ellipsis">{{ item.originalContent }}</p>
+              <div class="meta">
+                <!-- <span>
               &nbsp;
               <i class="el-icon-date"/>
               &nbsp;{{ item.createTime }}
-            </span>-->
-            <span>
-              <i class="el-icon-view"/>
-              浏览({{ item.readingCount }})&nbsp;
-            </span>
-            <span class="icon-type">&nbsp;{{ item.category }}</span>
-          </div>
-        </div>
-        <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="120">
-      </nuxt-link>
-    </li>
-  </ul>
+                </span>-->
+                <span>
+                  <i class="el-icon-view"/>
+                  浏览({{ item.readingCount }})&nbsp;
+                </span>
+                <span class="icon-type">&nbsp;{{ item.category }}</span>
+              </div>
+            </div>
+            <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="120">
+          </nuxt-link>
+        </li>
+      </ul>
+    </ul>
+  </mt-loadmore>
 </template>
 
 <script>
@@ -29,7 +38,7 @@ import { getArticleList } from '~/plugins/api.js'
 import { formatDate, formatArticleContent } from '~/assets/js/utils.js'
 export default {
   props: {
-    category: {
+    sort: {
       type: String,
       default: ''
     },
@@ -58,17 +67,26 @@ export default {
     }
   },
   computed: {
-    showBtnMore() {
-      return this.articleCount > this.pagesize * this.page
+    allLoaded() {
+      return this.articleCount <= this.pagesize * this.page
     }
   },
   methods: {
+    refresh() {
+      this.page = 0
+      this.getData()
+      this.$refs.loadmore.onTopLoaded()
+    },
+    loadMore() {
+      this.getData()
+      this.$refs.loadmore.onBottomLoaded()
+    },
     getData() {
       getArticleList({
         params: {
           page: ++this.page,
           pagesize: this.pagesize,
-          category: this.category
+          sort: this.sort ? '-' + this.sort : ''
         }
       }).then(res => {
         let { count, list } = res.data

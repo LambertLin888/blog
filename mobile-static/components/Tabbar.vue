@@ -1,6 +1,6 @@
 <template>
   <div class="g-tabbar">
-    <mt-tabbar :fixed="true" v-model="active">
+    <mt-tabbar :fixed="true" v-model="currentTab">
       <mt-tab-item id="index">
         <i class="g-iconfont icon-home"/>
         <div class="name">首页</div>
@@ -31,6 +31,7 @@ export default {
   },
   data() {
     return {
+      currentTab: '',
       menuRouter: {
         index: '/',
         createTime: '/article-list/createTime',
@@ -40,9 +41,12 @@ export default {
     }
   },
   watch: {
-    active: function(val) {
+    currentTab: function(val) {
       this.handleSelect(val)
     }
+  },
+  mounted() {
+    this.currentTab = this.active
   },
   methods: {
     handleSelect(key) {
