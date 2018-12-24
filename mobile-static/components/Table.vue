@@ -62,7 +62,9 @@ export default {
       page: 1,
       defaultThumb:
         "this.src='https://himg.bdimg.com/sys/portrait/item/e1ace7bd91e99985e9a39ee4bea0e6ada3e789889b28.jpg'",
-      loadMessage: ''
+      loadMessage:
+        this.count >= this.pagesize ? '' : '—————— 我是有底线的 ——————',
+      isLoading: false
     }
   },
   computed: {
@@ -71,8 +73,10 @@ export default {
     }
   },
   watch: {
-    loadMoreEnable: function(val) {
-      if (!val) {
+    isLoading: function(val) {
+      if (val) {
+        this.loadMessage = '加载中 ......'
+      } else if (!this.loadMoreEnable) {
         this.loadMessage = '—————— 我是有底线的 ——————'
         window.removeEventListener('scroll', this.scrollhandle)
         return
@@ -80,28 +84,37 @@ export default {
     }
   },
   mounted() {
-    window.addEventListener('scroll', this.scrollhandle)
+    if (this.loadMoreEnable) {
+      this.addScrollListen()
+    }
   },
   methods: {
     refresh() {
-      this.page = 0
+      this.page = 1
       this.getData()
       this.$refs.loadmore.onTopLoaded()
+      this.addScrollListen()
     },
     loadMore() {
+      if (this.isLoading) {
+        return
+      }
+      this.page++
       this.getData()
     },
     getData() {
       this.loadMessage = 'Loading......'
+      this.isLoading = true
+      const sort = this.sort ? '-' + this.sort : null
       getArticleList({
         params: {
           page: this.page,
           pagesize: this.pagesize,
-          sort: this.sort ? '-' + this.sort : ''
+          sort
         }
       }).then(res => {
         this.loadMessage = ''
-        this.page++
+        this.isLoading = false
         let { count, list } = res.data
         list = formatArticleContent(list)
         this.articleList = this.page == 1 ? list : this.articleList.concat(list)
@@ -115,9 +128,12 @@ export default {
         document.documentElement.clientHeight || document.body.clientHeight //变量scrollHeight是滚动条的总高度
       var scrollHeight =
         document.documentElement.scrollHeight || document.body.scrollHeight //滚动条到底部的条件
-      if (scrollTop + windowHeight == scrollHeight) {
+      if (scrollTop + windowHeight + 20 > scrollHeight) {
         this.loadMore()
       }
+    },
+    addScrollListen() {
+      window.addEventListener('scroll', this.scrollhandle)
     }
   }
 }
