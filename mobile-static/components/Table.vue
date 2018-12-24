@@ -1,41 +1,34 @@
 <template>
-  <div class="g-com-table">
-    <mt-loadmore
-      ref="loadmore"
-      :auto-fill="false"
-      :top-method="refresh"
-      :bottom-method="loadMore"
-      :bottom-all-loaded="allLoaded"
-    >
-      <ul>
-        <nuxt-link
-          v-for="item in articleList"
-          :key="item.id"
-          :to="{name:'article-detail-id',params:{id:item.id}}"
-        >
-          <li class="item">
-            <div :class="!item.thumb?'content hike-content':'content'">
-              <span class="title">{{ item.title }}</span>
-              <p class="des ellipsis">{{ item.originalContent }}</p>
-              <div class="meta">
-                <!-- <span>
+  <mt-loadmore ref="loadmore" :top-method="refresh" class="g-com-table">
+    <ul>
+      <nuxt-link
+        v-for="item in articleList"
+        :key="item.id"
+        :to="{name:'article-detail-id',params:{id:item.id}}"
+      >
+        <li class="item">
+          <div :class="!item.thumb?'content hike-content':'content'">
+            <span class="title">{{ item.title }}</span>
+            <p class="des ellipsis">{{ item.originalContent }}</p>
+            <div class="meta">
+              <!-- <span>
               &nbsp;
               <i class="el-icon-date"/>
               &nbsp;{{ item.createTime }}
-                </span>-->
-                <span>
-                  <i class="el-icon-view"/>
-                  浏览({{ item.readingCount }})&nbsp;
-                </span>
-                <span class="icon-type">&nbsp;{{ item.category }}</span>
-              </div>
+              </span>-->
+              <span>
+                <i class="el-icon-view"/>
+                浏览({{ item.readingCount }})&nbsp;
+              </span>
+              <span class="icon-type">&nbsp;{{ item.category }}</span>
             </div>
-            <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="img">
-          </li>
-        </nuxt-link>
-      </ul>
-    </mt-loadmore>
-  </div>
+          </div>
+          <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="img">
+        </li>
+      </nuxt-link>
+    </ul>
+    <p class="loading">{{ loadMessage }}</p>
+  </mt-loadmore>
 </template>
 
 <script>
@@ -68,13 +61,33 @@ export default {
       articleCount: this.count,
       page: 1,
       defaultThumb:
-        "this.src='https://himg.bdimg.com/sys/portrait/item/e1ace7bd91e99985e9a39ee4bea0e6ada3e789889b28.jpg'"
+        "this.src='https://himg.bdimg.com/sys/portrait/item/e1ace7bd91e99985e9a39ee4bea0e6ada3e789889b28.jpg'",
+      loadMessage: ''
     }
   },
   computed: {
-    allLoaded() {
-      return this.articleCount <= this.pagesize * this.page
+    loadMoreEnable() {
+      return this.articleCount > this.pagesize * this.page
     }
+  },
+  mounted() {
+    let _this = this
+    window.addEventListener('scroll', () => {
+      var scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop //变量windowHeight是可视区的高度
+      var windowHeight =
+        document.documentElement.clientHeight || document.body.clientHeight //变量scrollHeight是滚动条的总高度
+      var scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight //滚动条到底部的条件
+      if (scrollTop + windowHeight == scrollHeight) {
+        if (!this.loadMoreEnable) {
+          window.removeEventListener('scroll', () => {})
+          this.loadMessage = '—————— 我是有底线的 ——————'
+          return
+        }
+        this.loadMore()
+      }
+    })
   },
   methods: {
     refresh() {
@@ -84,7 +97,7 @@ export default {
     },
     loadMore() {
       this.getData()
-      this.$refs.loadmore.onBottomLoaded()
+      this.loadMessage = 'Loading......'
     },
     getData() {
       getArticleList({
