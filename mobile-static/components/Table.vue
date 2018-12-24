@@ -1,39 +1,41 @@
 <template>
-  <mt-loadmore
-    ref="loadmore"
-    :top-method="refresh"
-    :bottom-method="loadMore"
-    :bottom-all-loaded="allLoaded"
-    :bottom-distance="0"
-  >
-    <ul class="g-com-table">
-      <nuxt-link
-        v-for="item in articleList"
-        :key="item.id"
-        :to="{name:'article-detail-id',params:{id:item.id}}"
-      >
-        <li class="item">
-          <div :class="!item.thumb?'content hike-content':'content'">
-            <span class="title">{{ item.title }}</span>
-            <p class="des ellipsis">{{ item.originalContent }}</p>
-            <div class="meta">
-              <!-- <span>
+  <div class="g-com-table">
+    <mt-loadmore
+      ref="loadmore"
+      :auto-fill="false"
+      :top-method="refresh"
+      :bottom-method="loadMore"
+      :bottom-all-loaded="allLoaded"
+    >
+      <ul>
+        <nuxt-link
+          v-for="item in articleList"
+          :key="item.id"
+          :to="{name:'article-detail-id',params:{id:item.id}}"
+        >
+          <li class="item">
+            <div :class="!item.thumb?'content hike-content':'content'">
+              <span class="title">{{ item.title }}</span>
+              <p class="des ellipsis">{{ item.originalContent }}</p>
+              <div class="meta">
+                <!-- <span>
               &nbsp;
               <i class="el-icon-date"/>
               &nbsp;{{ item.createTime }}
-              </span>-->
-              <span>
-                <i class="el-icon-view"/>
-                浏览({{ item.readingCount }})&nbsp;
-              </span>
-              <span class="icon-type">&nbsp;{{ item.category }}</span>
+                </span>-->
+                <span>
+                  <i class="el-icon-view"/>
+                  浏览({{ item.readingCount }})&nbsp;
+                </span>
+                <span class="icon-type">&nbsp;{{ item.category }}</span>
+              </div>
             </div>
-          </div>
-          <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="img">
-        </li>
-      </nuxt-link>
-    </ul>
-  </mt-loadmore>
+            <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="img">
+          </li>
+        </nuxt-link>
+      </ul>
+    </mt-loadmore>
+  </div>
 </template>
 
 <script>
