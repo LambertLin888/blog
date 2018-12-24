@@ -70,24 +70,17 @@ export default {
       return this.articleCount > this.pagesize * this.page
     }
   },
-  mounted() {
-    let _this = this
-    window.addEventListener('scroll', () => {
-      var scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop //变量windowHeight是可视区的高度
-      var windowHeight =
-        document.documentElement.clientHeight || document.body.clientHeight //变量scrollHeight是滚动条的总高度
-      var scrollHeight =
-        document.documentElement.scrollHeight || document.body.scrollHeight //滚动条到底部的条件
-      if (scrollTop + windowHeight == scrollHeight) {
-        if (!this.loadMoreEnable) {
-          window.removeEventListener('scroll', () => {})
-          this.loadMessage = '—————— 我是有底线的 ——————'
-          return
-        }
-        this.loadMore()
+  watch: {
+    loadMoreEnable: function(val) {
+      if (!val) {
+        this.loadMessage = '—————— 我是有底线的 ——————'
+        window.removeEventListener('scroll', this.scrollhandle)
+        return
       }
-    })
+    }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.scrollhandle)
   },
   methods: {
     refresh() {
@@ -97,21 +90,34 @@ export default {
     },
     loadMore() {
       this.getData()
-      this.loadMessage = 'Loading......'
     },
     getData() {
+      this.loadMessage = 'Loading......'
       getArticleList({
         params: {
-          page: ++this.page,
+          page: this.page,
           pagesize: this.pagesize,
           sort: this.sort ? '-' + this.sort : ''
         }
       }).then(res => {
+        this.loadMessage = ''
+        this.page++
         let { count, list } = res.data
         list = formatArticleContent(list)
         this.articleList = this.page == 1 ? list : this.articleList.concat(list)
         this.articleCount = count
       })
+    },
+    scrollhandle() {
+      var scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop //变量windowHeight是可视区的高度
+      var windowHeight =
+        document.documentElement.clientHeight || document.body.clientHeight //变量scrollHeight是滚动条的总高度
+      var scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight //滚动条到底部的条件
+      if (scrollTop + windowHeight == scrollHeight) {
+        this.loadMore()
+      }
     }
   }
 }
