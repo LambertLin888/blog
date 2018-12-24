@@ -76,3 +76,9 @@ typings/
 
 # IDE
 .idea
+
+#upload images
+upload-img.sh
+
+#package-lock.json
+package-lock.json

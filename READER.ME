@@ -34,6 +34,8 @@ npm run  build-test-back
 ### 编译启动test环境前端 port(8001)
 npm run start-test-front
 
+### 编译启动test环境手机端 port(8011)
+npm run start-test-mobile
 
 ### 编译启动test环境服务端 port(9001)
 npm run start-test-server
@@ -49,6 +51,9 @@ npm run  build-prod-back
 ### 编译启动prod环境前端 port(8002)
 npm run start-prod-front
 
+### 编译启动prod环境手机端 port(8012)
+npm run start-prod-mobile
+
 ### 编译启动prod环境服务端 port(9002)
 npm run start-prod-server
 
@@ -58,7 +63,9 @@ npm run start-prod-server
 
 --back-static   #后端 此为博客编辑静态页面  技术选型为: vue2+axios+elementUI+less+webpack
 
---front-static  #前端(C端) 此为博客展示页面  技术选型为: vue2+axios+elementUI+less+webpack
+--front-static  #前端(PC端) 此为博客展示页面  技术选型为: vue2+axios+elementUI+less+webpack
+
+--front-static  #前端(移动端) 此为博客展示页面  技术选型为: vue2+axios+mintUI+less+webpack
 
 --server        #服务端 此为博客的服务器  技术选型为：koa2+mongodb
 
@@ -75,6 +82,32 @@ npm run start-prod-server
   （目前的ECS内存只有1G,back-static、front-static都在本分支先build再上传;
 
 4、prod分支对应线上的生产环境、操作原则与test分支一致;
+
+
+#####################################################################
+
+## 上传图片:
+
+1、重命名需要上传的图片文件名字（注:加上文章日期）。 eg: 20181112-what.png
+
+2、切换到dev分支
+
+3、把图片放在mac '下载' 文件夹内, 执行 
+
+    sh upload-img.sh <filename>
+
+#####################################################################
+## pm2  
+#test
+
+pm2 start npm --watch --name test-blog-front -- run start-test-front
+pm2 start npm --watch --name test-blog-mobile -- run start-test-mobile
+pm2 start npm --watch --name test-blog-server -- run start-test-server
+
+#prod
+pm2 start npm --watch --name blog-front -- run start-prod-front
+pm2 start npm --watch --name blog-mobile -- run start-prod-mobile
+pm2 start npm --watch --name blog-server -- run start-prod-server
 
 
 

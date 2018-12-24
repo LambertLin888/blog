@@ -7,12 +7,15 @@
     "postinstall": "cd back-static && npm install && cd ../front-static && npm install && cd ../server && npm install",
     "dev-back": "cd back-static && npm run serve",
     "dev-front": "cd front-static && npm run dev",
+    "dev-mobile": "cd mobile-static && npm run dev",
     "dev-server": "cd server && npm run start",
     "build-test-back": "cd back-static && npm run build-test",
     "start-test-front": "cd front-static && npm run build-test && npm run start-test",
+    "start-test-mobile": "cd mobile-static && npm run build-test && npm run start-test",
     "start-test-server": "cd server && npm run start-test",
     "build-prod-back": "cd back-static && npm run build-prod",
     "start-prod-front": "cd front-static && npm run build-prod && npm run start-prod",
+    "start-prod-mobile": "cd mobile-static && npm run build-prod && npm run start-prod",
     "start-prod-server": "cd server && npm run start-prod"
   },
   "repository": {
