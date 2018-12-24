@@ -1,12 +1,6 @@
 <template>
-  <mt-loadmore
-    ref="loadmore"
-    :top-method="refresh"
-    :bottom-method="loadMore"
-    :bottom-all-loaded="allLoaded"
-    :bottom-distance="0"
-  >
-    <ul class="g-com-table">
+  <mt-loadmore ref="loadmore" :top-method="refresh" class="g-com-table">
+    <ul>
       <nuxt-link
         v-for="item in articleList"
         :key="item.id"
@@ -33,6 +27,7 @@
         </li>
       </nuxt-link>
     </ul>
+    <p class="loading">{{ loadMessage }}</p>
   </mt-loadmore>
 </template>
 
@@ -66,37 +61,79 @@ export default {
       articleCount: this.count,
       page: 1,
       defaultThumb:
-        "this.src='https://himg.bdimg.com/sys/portrait/item/e1ace7bd91e99985e9a39ee4bea0e6ada3e789889b28.jpg'"
+        "this.src='https://himg.bdimg.com/sys/portrait/item/e1ace7bd91e99985e9a39ee4bea0e6ada3e789889b28.jpg'",
+      loadMessage:
+        this.count >= this.pagesize ? '' : '—————— 我是有底线的 ——————',
+      isLoading: false
     }
   },
   computed: {
-    allLoaded() {
-      return this.articleCount <= this.pagesize * this.page
+    loadMoreEnable() {
+      return this.articleCount > this.pagesize * this.page
+    }
+  },
+  watch: {
+    isLoading: function(val) {
+      if (val) {
+        this.loadMessage = '加载中 ......'
+      } else if (!this.loadMoreEnable) {
+        this.loadMessage = '—————— 我是有底线的 ——————'
+        window.removeEventListener('scroll', this.scrollhandle)
+        return
+      }
+    }
+  },
+  mounted() {
+    if (this.loadMoreEnable) {
+      this.addScrollListen()
     }
   },
   methods: {
     refresh() {
-      this.page = 0
+      this.page = 1
       this.getData()
       this.$refs.loadmore.onTopLoaded()
+      this.addScrollListen()
     },
     loadMore() {
+      if (this.isLoading) {
+        return
+      }
+      this.page++
       this.getData()
-      this.$refs.loadmore.onBottomLoaded()
     },
     getData() {
+      this.loadMessage = 'Loading......'
+      this.isLoading = true
+      const sort = this.sort ? '-' + this.sort : null
       getArticleList({
         params: {
-          page: ++this.page,
+          page: this.page,
           pagesize: this.pagesize,
-          sort: this.sort ? '-' + this.sort : ''
+          sort
         }
       }).then(res => {
+        this.loadMessage = ''
+        this.isLoading = false
         let { count, list } = res.data
         list = formatArticleContent(list)
         this.articleList = this.page == 1 ? list : this.articleList.concat(list)
         this.articleCount = count
       })
+    },
+    scrollhandle() {
+      var scrollTop =
+        document.documentElement.scrollTop || document.body.scrollTop //变量windowHeight是可视区的高度
+      var windowHeight =
+        document.documentElement.clientHeight || document.body.clientHeight //变量scrollHeight是滚动条的总高度
+      var scrollHeight =
+        document.documentElement.scrollHeight || document.body.scrollHeight //滚动条到底部的条件
+      if (scrollTop + windowHeight + 20 > scrollHeight) {
+        this.loadMore()
+      }
+    },
+    addScrollListen() {
+      window.addEventListener('scroll', this.scrollhandle)
     }
   }
 }
