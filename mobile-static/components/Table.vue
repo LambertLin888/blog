@@ -23,7 +23,13 @@
               <span class="icon-type">&nbsp;{{ item.category }}</span>
             </div>
           </div>
-          <img :src="item.thumb" :onerror="defaultThumb" class="img-blur" alt="img">
+          <img
+            v-if="item.thumb"
+            :src="item.thumb"
+            :onerror="defaultThumb"
+            class="img-blur"
+            alt="img"
+          >
         </li>
       </nuxt-link>
     </ul>
@@ -60,8 +66,7 @@ export default {
       articleList: this.list,
       articleCount: this.count,
       page: 1,
-      defaultThumb:
-        "this.src='https://himg.bdimg.com/sys/portrait/item/e1ace7bd91e99985e9a39ee4bea0e6ada3e789889b28.jpg'",
+      defaultThumb: "this.src='http://www.linbenjian.work/images/face.jpg'",
       loadMessage:
         this.count >= this.pagesize ? '' : '—————— 我是有底线的 ——————',
       isLoading: false

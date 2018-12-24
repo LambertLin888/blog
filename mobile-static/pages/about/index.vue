@@ -2,10 +2,7 @@
   <div class="about">
     <div class="main">
       <div class="about-me">
-        <img
-          class="face"
-          src="https://himg.bdimg.com/sys/portrait/item/e1ace7bd91e99985e9a39ee4bea0e6ada3e789889b28.jpg"
-        >
+        <img class="face" src="http://www.linbenjian.work/images/face.jpg">
         <p class="name">lambert</p>
         <p class="des">前端攻城狮一枚, 目前专注于js全栈开发</p>
         <p class="des">e-mail:benjianlin@foxmail.com</p>
