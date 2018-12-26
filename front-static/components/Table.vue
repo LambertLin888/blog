@@ -63,8 +63,7 @@ export default {
       articleList: this.list,
       articleCount: this.count,
       page: 1,
-      defaultThumb:
-        "this.src='https://himg.bdimg.com/sys/portrait/item/e1ace7bd91e99985e9a39ee4bea0e6ada3e789889b28.jpg'"
+      defaultThumb: "this.src='http://www.linbenjian.work/images/face.jpg'"
     }
   },
   computed: {
