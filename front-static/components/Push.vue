@@ -2,7 +2,7 @@
   <div class="g-com-push">
     <p class="title">关于我</p>
     <div class="about-me">
-      <img class="face" src="http://www.linbenjian.work/images/face.jpg">
+      <img class="face" src="http://www.linbenjian.com/images/face.jpg">
       <p class="name">lambert</p>
       <p class="des">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前端攻城狮一枚, 目前专注于js全栈开发</p>
     </div>
@@ -28,7 +28,7 @@
     </ul>
     <p class="title">友情链接</p>
     <div class="friends-list">
-      <a class="item" href="http://www.linbenjian.work">lambert's blog</a>
+      <a class="item" href="http://www.linbenjian.com">lambert's blog</a>
       <a class="item" href="https://github.com/LambertLin888?tab=repositories">github</a>
     </div>
   </div>

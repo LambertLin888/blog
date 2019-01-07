@@ -66,7 +66,7 @@ export default {
       articleList: this.list,
       articleCount: this.count,
       page: 1,
-      defaultThumb: "this.src='http://www.linbenjian.work/images/face.jpg'",
+      defaultThumb: "this.src='http://www.linbenjian.com/images/face.jpg'",
       loadMessage:
         this.count >= this.pagesize ? '' : '—————— 我是有底线的 ——————',
       isLoading: false
