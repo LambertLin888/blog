@@ -30,7 +30,9 @@
         </nuxt-link>
       </li>
     </ul>
-    <el-button v-show="showBtnMore" type="primary" class="btn-more" round @click="getData()">加载更多</el-button>
+    <transition name="fade">
+      <el-button v-show="showBtnMore" type="primary" class="btn-more" round @click="getData()">加载更多</el-button>
+    </transition>
   </div>
 </template>
 
